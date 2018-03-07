@@ -31,6 +31,7 @@ public abstract class Place : IPlace {
 		return owner;
 	}
 
+	// Maintain owned rep state
 	private void OwnedRep() {
 		if(!owned) { owner = null; }
 	}
