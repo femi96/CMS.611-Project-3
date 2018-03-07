@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour {
+public class Map : MonoBehaviour, IMap {
 	// Map:
 	//		Controller that handles wand data and player input.
 
