@@ -22,8 +22,8 @@ public abstract class Place {
 
 	// Called on generation ticks.
 	//		Change resources of owner based on place effect
-	//
-	public virtual void Generate() {
+	//		These methods should be overridden if places generate anything
+	public virtual void Generate(){
 		return;
 	}
 

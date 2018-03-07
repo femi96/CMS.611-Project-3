@@ -34,4 +34,12 @@ public class Map : MonoBehaviour {
 	private void UpdateGO(int x, int y) {
 
 	}
+
+	public int getMapSize(){
+		return mapSize;
+	}
+
+	public Place[,] getPlaceGrid(){
+		return placeGrid;
+	}
 }

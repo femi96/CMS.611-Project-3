@@ -40,5 +40,10 @@ public class Game : MonoBehaviour {
 		time -= tickTime;
 		tick += 1;
 		Debug.Log(tick);
+		for(int y = 0; y < map.getMapSize(); y++) {
+			for(int x = 0; x < map.getMapSize(); x++) {
+				map.getPlaceGrid () [x, y].Generate();
+			}
+		}
 	}
 }
