@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour {
+public class Map : MonoBehaviour, IMap {
 	// Map:
 	//		Controller that handles wand data and player input.
 
@@ -45,13 +45,14 @@ public class Map : MonoBehaviour {
 
 	public void SetPlaceOwner(int x, int y, Wand newOwner) {
 		if(ValidXY(x, y)) {
-			placeGrid[x, y].SetOwner(Wand newOwner);
+			placeGrid[x, y].SetOwner(newOwner);
 			UpdateGO(x, y);
 		}
 	}
 
 	// Update GO at x, y from place data
 	private void UpdateGO(int x, int y) {
+		Place place = GetPlace(x, y);
 
 	}
 
