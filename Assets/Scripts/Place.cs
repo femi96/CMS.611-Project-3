@@ -44,7 +44,7 @@ public abstract class Place : IPlace {
 		placeType = newType;
 	}
 
-	public PlaceType GetType() {
+	public PlaceType GetPlaceType() {
 		return placeType;
 	}
 }

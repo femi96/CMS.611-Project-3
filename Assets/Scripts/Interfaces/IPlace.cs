@@ -1,5 +1,8 @@
 ﻿public interface IPlace {
-	PlaceType GetType();
+
+	// Get the place's type
+	//		Returns place's PlaceType
+	PlaceType GetPlaceType();
 
 	// Set the place's type
 	//		Takes new PlaceType
