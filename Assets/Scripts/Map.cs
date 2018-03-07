@@ -14,7 +14,7 @@ public class Map : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		
 		// Create placeGrid as new places
 		placeGrid = new Place[mapSize, mapSize];
@@ -26,8 +26,19 @@ public class Map : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update() {}
+
+	// Get place at x, y from place data
+	public Place GetPlace(int x, int y) {
+		if(x > 0 && x < mapSize && y > 0 && y < mapSize) return placeGrid[x, y];
+		else return null;
+	}
+
+	// Get place at vector2 location from place data
+	public Place GetPlace(Vector2 v) {
+		int x = Mathf.RoundToInt(v.x);
+		int y = Mathf.RoundToInt(v.y);
+		return GetPlace(x, y);
 	}
 
 	// Update GO at x, y from place data
