@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PizzaPlace : Place {
-	// Place:
+	// PizzaPlace:
 	//		Data type that holds a position's data.
 
+	public PizzaPlace() {}
 
 	// Place variables
 	private bool owned;
@@ -29,11 +30,13 @@ public class PizzaPlace : Place {
 		
 	}
 
-	// Called on generation ticks.
-	//		Change resources of owner based on place effect
-	//
-	public virtual void Generate() {
+    // Called on generation ticks.
+    //		Change resources of owner based on place effect
+    //
 
+
+	public override void Generate() {
+		Wand owner = GetOwner();
 		return;
 	}
 }

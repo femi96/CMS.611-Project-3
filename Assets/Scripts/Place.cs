@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class Place {
 	// Place:
-	//		Data type that holds a position's data.
+	//		Data type that holds a place's data.
 
 
 	// Place variables
-	private bool owned;
+	private bool owned = false;
 	private Wand owner;	// If owner == null, owner = false
 
 
@@ -25,5 +25,22 @@ public abstract class Place {
 	//
 	public virtual void Generate() {
 		return;
+	}
+
+	// Called to get owner's wand
+	//		Returns wand of owner
+	//
+	public Wand GetOwner() {
+		if(!owned) { owner = null; }
+		return owner;
+	}
+
+	// Called to set owner's wand
+	//		Takes wand of new owning player
+	//		Sets owned and owner fields
+	//
+	public void SetOwner(Wand newOwner) {
+		owned = true;
+		owner = newOwner;
 	}
 }
