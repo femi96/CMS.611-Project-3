@@ -20,7 +20,7 @@ public class Map : MonoBehaviour {
 		placeGrid = new Place[mapSize, mapSize];
 		for(int y = 0; y < mapSize; y++) {
 			for(int x = 0; x < mapSize; x++) {
-				placeGrid[x, y] = new Place();
+				placeGrid[x, y] = new PizzaPlace();
 			}
 		}
 	}
@@ -28,5 +28,10 @@ public class Map : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	// Update GO at x, y from place data
+	private void UpdateGO(int x, int y) {
+
 	}
 }
