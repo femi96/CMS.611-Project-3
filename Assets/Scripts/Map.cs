@@ -60,4 +60,12 @@ public class Map : MonoBehaviour, IMap {
 	private bool ValidXY(int x, int y) {
 		return (x > 0 && x < mapSize && y > 0 && y < mapSize);
 	}
+
+	public int getMapSize(){
+		return mapSize;
+	}
+
+	public Place[,] getPlaceGrid(){
+		return placeGrid;
+	}
 }

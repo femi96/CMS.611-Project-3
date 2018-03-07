@@ -14,6 +14,10 @@ public class PizzaPlace : Place {
 
 	public override void Generate() {
 		IWand owner = GetOwner();
+		if (owner != null) {
+			owner.addMoney(4);
+			owner.addManPower(0);
+		}
 		return;
 	}
 }

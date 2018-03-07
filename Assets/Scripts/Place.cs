@@ -12,7 +12,7 @@ public abstract class Place : IPlace {
 	private IWand owner;	// If owner == null, owner = false
 
 	private PlaceType placeType = PlaceType.Default;
-
+	
 	public virtual bool TakeOver(IWand player) {
 		return false;
 	}
