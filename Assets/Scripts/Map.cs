@@ -9,7 +9,7 @@ public class Map : MonoBehaviour, IMap {
 
 	// Map variables
 	private int mapSize = 10;
-	private Place[,] placeGrid;			// Grid mapping location to place data @ location
+	private IPlace[,] placeGrid;			// Grid mapping location to place data @ location
 	private GameObject[,] placeGOGrid;	// Grid mapping location to place gameobject
 
 
@@ -30,13 +30,13 @@ public class Map : MonoBehaviour, IMap {
 	void Update() {}
 
 	// Get place at x, y from place data
-	public Place GetPlace(int x, int y) {
+	public IPlace GetPlace(int x, int y) {
 		if(ValidXY(x,y)) return placeGrid[x, y];
 		else return null;
 	}
 
 	// Get place at vector2 location from place data
-	public Place GetPlace(Vector2 v) {
+	public IPlace GetPlace(Vector2 v) {
 		int x = Mathf.RoundToInt(v.x);
 		int y = Mathf.RoundToInt(v.y);
 		return GetPlace(x, y);
@@ -52,7 +52,7 @@ public class Map : MonoBehaviour, IMap {
 
 	// Update GO at x, y from place data
 	private void UpdateGO(int x, int y) {
-		Place place = GetPlace(x, y);
+		IPlace place = GetPlace(x, y);
 
 	}
 
