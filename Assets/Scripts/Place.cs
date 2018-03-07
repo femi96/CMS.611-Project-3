@@ -11,7 +11,7 @@ public class Place {
 
 
 	// Creates an place instance
-	public Place() {
+	public Place(PlaceType type = PlaceType.Default) {
 
 	}
 }
