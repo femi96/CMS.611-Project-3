@@ -1,4 +1,6 @@
-﻿public interface IMap {
+﻿using UnityEngine;
+
+public interface IMap {
 
 	// Get place at map location
 	//		Takes x, y for grid location
