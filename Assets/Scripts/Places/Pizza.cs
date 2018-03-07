@@ -17,13 +17,23 @@ public class PizzaPlace : Place {
 	//		Returns boolean for if takeover was successful
 	//
 	public virtual bool TakeOver(Wand player) {
-		return false;
+        if(!owned)
+        {
+            owner = player;
+            return true;
+        } else
+        {
+
+            return false;
+        }
+		
 	}
 
 	// Called on generation ticks.
 	//		Change resources of owner based on place effect
 	//
 	public virtual void Generate() {
+
 		return;
 	}
 }
