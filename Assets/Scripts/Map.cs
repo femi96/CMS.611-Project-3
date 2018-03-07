@@ -21,6 +21,7 @@ public class Map : MonoBehaviour {
 		for(int y = 0; y < mapSize; y++) {
 			for(int x = 0; x < mapSize; x++) {
 				placeGrid[x, y] = new PizzaPlace();
+				UpdateGO(x, y);
 			}
 		}
 	}
@@ -30,7 +31,7 @@ public class Map : MonoBehaviour {
 
 	// Get place at x, y from place data
 	public Place GetPlace(int x, int y) {
-		if(x > 0 && x < mapSize && y > 0 && y < mapSize) return placeGrid[x, y];
+		if(ValidXY(x,y)) return placeGrid[x, y];
 		else return null;
 	}
 
@@ -41,8 +42,21 @@ public class Map : MonoBehaviour {
 		return GetPlace(x, y);
 	}
 
+
+	public void SetPlaceOwner(int x, int y, Wand newOwner) {
+		if(ValidXY(x, y)) {
+			placeGrid[x, y].SetOwner(Wand newOwner);
+			UpdateGO(x, y);
+		}
+	}
+
 	// Update GO at x, y from place data
 	private void UpdateGO(int x, int y) {
 
+	}
+
+	// Return if x, y are valid coordinates in the grid
+	private bool ValidXY(int x, int y) {
+		return (x > 0 && x < mapSize && y > 0 && y < mapSize);
 	}
 }

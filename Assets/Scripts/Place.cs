@@ -39,8 +39,8 @@ public abstract class Place {
 	//		Takes wand of new owning player
 	//		Sets owned and owner fields
 	//
-	public void SetOwner(Wand player) {
+	public void SetOwner(Wand newOwner) {
 		owned = true;
-		owner = player;
+		owner = newOwner;
 	}
 }
