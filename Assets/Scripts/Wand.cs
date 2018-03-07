@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wand : MonoBehaviour {
+public class Wand : MonoBehaviour, IWand {
 	// Wand:
 	//		Controller that handles wand data and player input.
 
