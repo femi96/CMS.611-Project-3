@@ -9,38 +9,42 @@ public abstract class Place : IPlace {
 
 	// Place variables
 	private bool owned = false;
-	private Wand owner;	// If owner == null, owner = false
+	private IWand owner;	// If owner == null, owner = false
 
+	private PlaceType placeType = PlaceType.Default;
 
-	// Called when trying to takeover a location.
-	//		Takes wand of attempting player, for player's money and manpower
-	//		Returns boolean for if takeover was successful
-	//
-	public virtual bool TakeOver(Wand player) {
+	public virtual bool TakeOver(IWand player) {
 		return false;
 	}
 
-	// Called on generation ticks.
-	//		Change resources of owner based on place effect
-	//
 	public virtual void Generate() {
 		return;
 	}
 
-	// Called to get owner's wand
-	//		Returns wand of owner
-	//
-	public Wand GetOwner() {
-		if(!owned) { owner = null; }
+	public bool IsOwned() {
+		OwnedRep();
+		return owned;
+	}
+	
+	public IWand GetOwner() {
+		OwnedRep();
 		return owner;
 	}
 
-	// Called to set owner's wand
-	//		Takes wand of new owning player
-	//		Sets owned and owner fields
-	//
-	public void SetOwner(Wand newOwner) {
+	private void OwnedRep() {
+		if(!owned) { owner = null; }
+	}
+
+	public void SetOwner(IWand newOwner) {
 		owned = true;
 		owner = newOwner;
+	}
+
+	public void SetType(PlaceType newType) {
+		placeType = newType;
+	}
+
+	public PlaceType GetType() {
+		return placeType;
 	}
 }

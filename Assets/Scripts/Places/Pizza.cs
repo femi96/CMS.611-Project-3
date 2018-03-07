@@ -8,12 +8,12 @@ public class PizzaPlace : Place {
 
 	public PizzaPlace() {}
 
-	public override bool TakeOver(Wand player) {
+	public override bool TakeOver(IWand player) {
 		return true;
 	}
 
 	public override void Generate() {
-		Wand owner = GetOwner();
+		IWand owner = GetOwner();
 		return;
 	}
 }
