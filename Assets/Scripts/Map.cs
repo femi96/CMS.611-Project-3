@@ -61,11 +61,7 @@ public class Map : MonoBehaviour, IMap {
 		return (x > 0 && x < mapSize && y > 0 && y < mapSize);
 	}
 
-	public int getMapSize(){
+	public int GetMapSize(){
 		return mapSize;
-	}
-
-	public Place[,] getPlaceGrid(){
-		return placeGrid;
 	}
 }
