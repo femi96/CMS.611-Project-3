@@ -13,9 +13,14 @@ public class Map : MonoBehaviour, IMap {
 	private IPlace[,] placeGrid;		// Grid mapping location to place data @ location
 	private GameObject[,] placeGOGrid;	// Grid mapping location to place gameobject
 
+	private float offset;
+
 
 	// Use this for initialization
 	void Start() {
+
+		// Position offset based on mapSize
+		offset = 0.5f - (mapSize/2f);
 		
 		// Create placeGrid as new places
 		placeGrid = new IPlace[mapSize, mapSize];
@@ -60,8 +65,6 @@ public class Map : MonoBehaviour, IMap {
 		if(go != null) { Destroy(go); }
 
 		IPlace place = GetPlace(x, y);
-
-		const float offset = 0.5f;
 
 		go = Instantiate(newPlace, new Vector2(x+offset, y+offset), Quaternion.identity, transform);
 		go.name = "Place ("+x+", "+y+")";
