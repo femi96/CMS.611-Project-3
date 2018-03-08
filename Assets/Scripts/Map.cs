@@ -68,6 +68,12 @@ public class Map : MonoBehaviour, IMap {
 
 		go = Instantiate(newPlace, new Vector2(x+offset, y+offset), Quaternion.identity, transform);
 		go.name = "Place ("+x+", "+y+")";
+
+		if(place.IsOwned()) {
+			IWand owner = place.GetOwner();
+			go.transform.Find("Background").gameObject.GetComponent<SpriteRenderer>().color = owner.GetColor();
+		}
+
 		placeGOGrid[x, y] = go;
 	}
 
