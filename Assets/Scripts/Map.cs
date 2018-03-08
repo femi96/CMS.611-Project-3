@@ -8,6 +8,7 @@ public class Map : MonoBehaviour, IMap {
 
 
 	// Map variables
+	public GameObject newPlace;
 	private int mapSize = 10;
 	private IPlace[,] placeGrid;		// Grid mapping location to place data @ location
 	private GameObject[,] placeGOGrid;	// Grid mapping location to place gameobject
@@ -18,6 +19,7 @@ public class Map : MonoBehaviour, IMap {
 		
 		// Create placeGrid as new places
 		placeGrid = new IPlace[mapSize, mapSize];
+		placeGOGrid = new GameObject[mapSize, mapSize];
 		for(int y = 0; y < mapSize; y++) {
 			for(int x = 0; x < mapSize; x++) {
 				placeGrid[x, y] = new PizzaPlace();
@@ -53,8 +55,17 @@ public class Map : MonoBehaviour, IMap {
 
 	// Update GO at x, y from place data
 	private void UpdateGO(int x, int y) {
+		GameObject go = placeGOGrid[x, y];
+
+		if(go != null) { Destroy(go); }
+
 		IPlace place = GetPlace(x, y);
 
+		const float offset = 0.5f;
+
+		go = Instantiate(newPlace, new Vector2(x+offset, y+offset), Quaternion.identity, transform);
+		go.name = "Place ("+x+", "+y+")";
+		placeGOGrid[x, y] = go;
 	}
 
 	// Return if x, y are valid coordinates in the grid
