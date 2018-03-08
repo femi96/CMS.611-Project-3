@@ -70,6 +70,6 @@ public class Map : MonoBehaviour, IMap {
 
 	// Return if x, y are valid coordinates in the grid
 	private bool ValidXY(int x, int y) {
-		return (x > 0 && x < mapSize && y > 0 && y < mapSize);
+		return (x >= 0 && x < mapSize && y >= 0 && y < mapSize);
 	}
 }
