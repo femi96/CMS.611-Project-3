@@ -20,6 +20,7 @@ public class Game : MonoBehaviour {
 
 	// Use this for finding components
 	void Awake() {
+		map = transform.Find("Map").gameObject.GetComponent<Map>();
 		wand1 = transform.Find("Wand1").gameObject.GetComponent<Wand>();
 		wand2 = transform.Find("Wand2").gameObject.GetComponent<Wand>();
 	}
