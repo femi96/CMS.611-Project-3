@@ -8,7 +8,9 @@ public class Wand : MonoBehaviour, IWand {
 	private double money;
 	private double manPower;
 	private Color color;
-
+    private int x;
+    private int y;
+    private List<Direction> trail;
 	// Wand variables
 	
 
@@ -55,4 +57,35 @@ public class Wand : MonoBehaviour, IWand {
 		}
 		return false;
 	}
+
+    public int GetX()
+    {
+        return x;
+    }
+
+    public int GetY()
+    {
+        return y;
+    }
+
+    public Color GetColor()
+    {
+        return color;
+    }
+
+    public Direction Peek()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public Direction Pop()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public List<Direction> Trail()
+    {
+        return trail;
+    }
+
 }
