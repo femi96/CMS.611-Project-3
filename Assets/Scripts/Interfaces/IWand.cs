@@ -19,4 +19,11 @@ public interface IWand
 
     // Gets the trail of actions currently on the queue
     List<Direction> Trail();
+
+	double getMoney ();
+	double getManPower ();
+	void addMoney (double m);
+	void addManPower (double m);
+	bool loseMoney (double m);
+	bool loseManPower (double m);
 }
