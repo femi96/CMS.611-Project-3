@@ -9,11 +9,11 @@ public abstract class Place : IPlace {
 
 	// Place variables
 	private bool owned = false;
-	private IWand owner;	// If owner == null, owner = false
+	private Wand owner;	// If owner == null, owner = false
 
 	private PlaceType placeType = PlaceType.Default;
 	
-	public virtual bool TakeOver(IWand player) {
+	public virtual bool TakeOver(Wand player) {
 		return false;
 	}
 
@@ -26,7 +26,7 @@ public abstract class Place : IPlace {
 		return owned;
 	}
 	
-	public IWand GetOwner() {
+	public Wand GetOwner() {
 		OwnedRep();
 		return owner;
 	}
@@ -36,7 +36,7 @@ public abstract class Place : IPlace {
 		if(!owned) { owner = null; }
 	}
 
-	public void SetOwner(IWand newOwner) {
+	public void SetOwner(Wand newOwner) {
 		owned = true;
 		owner = newOwner;
 	}

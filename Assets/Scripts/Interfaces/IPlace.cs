@@ -14,17 +14,17 @@
 
 	// Get the place's owner's wand
 	//		Returns wand of owner
-    IWand GetOwner();
+    Wand GetOwner();
 
 	// Set the place's owner
 	//		Takes wand of new owning player
-    void SetOwner(IWand owner);
+    void SetOwner(Wand owner);
 
 	// Try to take over the place.
 	//		Takes wand of player taking over
 	//		Changes player's resources
 	//		Returns boolean for if takeover was successful
-    bool TakeOver(IWand owner);
+    bool TakeOver(Wand owner);
 
 	// Give resources to the place's owner. Call on generation ticks.
 	//		Change resources of place's owner based on the type of place.
