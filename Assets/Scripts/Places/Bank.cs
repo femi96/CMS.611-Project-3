@@ -9,7 +9,7 @@ public class Bank : Place {
 	public Bank() {}
 
 	public override bool TakeOver(Wand player) {
-		return (player.loseMoney(20) && player.loseManPower(3)); // NOTE: THIS MEANS A PLAYER WILL LOSE
+		return (player.LoseMoney(20) && player.LoseManPower(3)); // NOTE: THIS MEANS A PLAYER WILL LOSE
 		// ONE RESOURCE AND FAIL TO TAKE OVER
 		// If they don't have enough of both,
 		// not sure if we want that, let's see how it plays
@@ -18,8 +18,8 @@ public class Bank : Place {
 	public override void Generate() {
 		Wand owner = GetOwner();
 		if (owner != null) {
-			owner.addMoney(8);
-			owner.addManPower(0);
+			owner.AddMoney(8);
+			owner.AddManPower(0);
 		}
 		return;
 	}
