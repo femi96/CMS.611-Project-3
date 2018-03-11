@@ -6,7 +6,9 @@ public class PoliceStation : Place {
 	// PoliceStation:
 	//		Data type that holds a position's data.
 
-	public PoliceStation() {}
+	public PoliceStation() {
+		SetType(PlaceType.Police);
+	}
 
 	public override bool TakeOver(Wand player) {
 		return (player.LoseMoney(20) && player.LoseManPower(5)); // NOTE: THIS MEANS A PLAYER WILL LOSE
