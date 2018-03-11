@@ -8,9 +8,9 @@ public class Game : MonoBehaviour {
 
 
 	// Game variables
-	private Wand wand1;
-	private Wand wand2;
-	private Map map;
+	private IWand wand1;
+	private IWand wand2;
+	private IMap map;
 
 	// Game tick variables
 	private float time;

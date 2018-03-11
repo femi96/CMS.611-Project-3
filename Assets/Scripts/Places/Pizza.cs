@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PizzaPlace : Place {
+public class PizzaPlace : IPlace {
 	// PizzaPlace:
 	//		Data type that holds a position's data.
 
 	public PizzaPlace() {}
 
-	public override bool TakeOver(Wand player) {
+	public override bool TakeOver(IWand player) {
 		return true;
 	}
 
 	public override void Generate() {
-		Wand owner = GetOwner();
+		IWand owner = GetOwner();
 		if (owner != null) {
 			owner.addMoney (4);
 			owner.addManPower (0);
