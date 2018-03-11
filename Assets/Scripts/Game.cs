@@ -20,6 +20,7 @@ public class Game : MonoBehaviour {
 
 	// Use this for finding components
 	void Awake() {
+		map = transform.Find("Map").gameObject.GetComponent<Map>();
 		wand1 = transform.Find("Wand1").gameObject.GetComponent<Wand>();
 		wand2 = transform.Find("Wand2").gameObject.GetComponent<Wand>();
 	}
@@ -40,9 +41,9 @@ public class Game : MonoBehaviour {
 		time -= tickTime;
 		tick += 1;
 		Debug.Log(tick);
-		for(int y = 0; y < map.getMapSize(); y++) {
-			for(int x = 0; x < map.getMapSize(); x++) {
-				map.getPlaceGrid () [x, y].Generate();
+		for(int y = 0; y < map.GetMapSize(); y++) {
+			for(int x = 0; x < map.GetMapSize(); x++) {
+				map.GetPlace(x, y).Generate();
 			}
 		}
 	}
