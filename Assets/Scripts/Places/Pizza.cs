@@ -18,8 +18,8 @@ public class PizzaPlace : Place {
 	public override void Generate() {
 		Wand owner = GetOwner();
 		if (owner != null) {
-			owner.addMoney(4);
-			owner.addManPower(0);
+			owner.AddMoney(4);
+			owner.AddManPower(0);
 		}
 		return;
 	}

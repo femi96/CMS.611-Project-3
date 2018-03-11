@@ -2,11 +2,10 @@
 using UnityEngine;
 
 // Responsible for maintaining a queue of actions
-public interface IWand
-{
+public interface IWand {
+
     // Current cursor Location
-    int GetX();
-    int GetY();
+    Vector2 GetPosition();
 
     Color GetColor();
     
@@ -20,10 +19,10 @@ public interface IWand
     // Gets the trail of actions currently on the queue
     List<Direction> Trail();
 
-	double getMoney ();
-	double getManPower ();
-	void addMoney (double m);
-	void addManPower (double m);
-	bool loseMoney (double m);
-	bool loseManPower (double m);
+	double GetMoney();
+	double GetManPower();
+	void AddMoney(double m);
+	void AddManPower(double m);
+	bool LoseMoney(double m);
+	bool LoseManPower(double m);
 }
