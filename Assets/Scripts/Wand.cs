@@ -64,4 +64,16 @@ public class Wand : MonoBehaviour, IWand {
 		}
 		return false;
 	}
+
+	public Direction Peek() {
+		return Direction.UP;
+	}
+
+	public Direction Pop() {
+		return Direction.UP;
+	}
+
+	public List<Direction> Trail() {
+		return new List<Direction>();
+	}
 }
