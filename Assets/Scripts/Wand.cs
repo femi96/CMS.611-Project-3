@@ -5,42 +5,51 @@ using UnityEngine;
 public class Wand : MonoBehaviour, IWand {
 	// Wand:
 	//		Controller that handles wand data and player input.
+
+
+	// Wand variables
 	private double money;
 	private double manPower;
 	private Color color;
 
-	// Wand variables
-	
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		money = 30;
 		manPower = 2;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 		
 	}
 
-	public double getMoney(){
+	public Color GetColor() {
+		return color;
+	}
+
+	public Vector2 GetPosition() {
+		return transform.position;
+	}
+
+	public double GetMoney(){
 		return money;
 	}
 
-	public double getManPower(){
+	public double GetManPower(){
 		return manPower;
 	}
 
-	public void addMoney(double m){
+	public void AddMoney(double m){
 		money = money + m;
 	}
 
-	public void addManPower(double m){
+	public void AddManPower(double m){
 		manPower = manPower + m;
 	}
 		
 	// Lose methods return true if possible, return false if not possible
-	public bool loseMoney(double m){
+	public bool LoseMoney(double m){
 		if (money > m) {
 			money = money - m;
 			return true;
@@ -48,7 +57,7 @@ public class Wand : MonoBehaviour, IWand {
 		return false;
 	}
 
-	public bool loseManPower(double m){
+	public bool LoseManPower(double m){
 		if (manPower > m) {
 			manPower = manPower - m;
 			return true;
