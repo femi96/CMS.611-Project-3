@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PizzaPlace : IPlace {
+public class PizzaPlace : Place {
 	// PizzaPlace:
 	//		Data type that holds a position's data.
 
