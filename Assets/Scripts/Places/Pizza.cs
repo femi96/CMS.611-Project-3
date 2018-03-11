@@ -10,24 +10,28 @@ public class PizzaPlace : Place {
 
 	// Place variables
 	private bool owned;
-	private Wand owner; // If owner == null, owner = false
+	private Wand owner; // If owner == null, owned = false
 
 
     // Called when trying to takeover a location.
     //		Takes wand of attempting player, for player's money and manpower
     //		Returns boolean for if takeover was successful
     //
-    public virtual bool TakeOver(Wand player)
+    public override bool TakeOver(Wand player)
     {
         if (!owned)
         {
-            owner = player;
+            owner = player;         // ONE RESOURCE AND FAIL TO TAKE OVER
+                                        // If they don't have enough of both,
+                                        // not sure if we want that, let's see how it plays
+            player.LoseManPower(1);
+            player.LoseMoney(10);
             return true;
         }
         else
         {
-
-            return false;
+            bool wonTakeOver = player.Attack(owner);
+            return wonTakeOver;
         }
     }
 
@@ -35,12 +39,9 @@ public class PizzaPlace : Place {
     //		Change resources of owner based on place effect
     //
 
-	public override bool TakeOver(Wand player) {
-		return (player.LoseMoney(10) && player.LoseManPower(1)); // NOTE: THIS MEANS A PLAYER WILL LOSE
-																 // ONE RESOURCE AND FAIL TO TAKE OVER
-		                                                         // If they don't have enough of both,
-		                                                         // not sure if we want that, let's see how it plays
-	}
+ // NOTE: THIS MEANS A PLAYER WILL LOSE
+																 
+
 
 	public override void Generate() {
 		Wand owner = GetOwner();

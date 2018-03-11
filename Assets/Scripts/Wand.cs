@@ -80,19 +80,43 @@ public class Wand : MonoBehaviour, IWand {
         return y;
     }
 
-    public Direction Peek()
-    {
-        throw new System.NotImplementedException();
-    }
+	public Direction Peek() {
+		return Direction.UP;
+	}
 
-    public Direction Pop()
-    {
-        throw new System.NotImplementedException();
-    }
+	public Direction Pop() {
+		return Direction.UP;
+	}
 
-    public List<Direction> Trail()
-    {
-        return trail;
-    }
+	public List<Direction> Trail() {
+		return new List<Direction>();
+	}
 
+    public bool Attack(Wand otherPlayer)
+    {
+        if(manPower > otherPlayer.GetManPower())
+        {
+            LoseManPower(manPower / otherPlayer.GetManPower());
+            otherPlayer.LoseManPower(otherPlayer.GetManPower() / manPower);
+            return true;
+        } else if(manPower < otherPlayer.GetManPower())
+        {
+            otherPlayer.LoseManPower(manPower / otherPlayer.GetManPower());
+            LoseManPower(otherPlayer.GetManPower() / manPower);
+            return false;
+        } else
+        {
+            bool moneyGreater = money >= otherPlayer.GetMoney();
+            if(moneyGreater)
+            {
+                LoseMoney(otherPlayer.GetMoney() + 1);
+                otherPlayer.LoseMoney(otherPlayer.GetMoney());
+            } else
+            {
+                otherPlayer.LoseMoney(money + 1);
+                LoseMoney(money);
+            }
+            return moneyGreater;
+        }
+    } 
 }
