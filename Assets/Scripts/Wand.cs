@@ -17,6 +17,7 @@ public class Wand : MonoBehaviour, IWand {
 	void Start() {
 		money = 30;
 		manPower = 2;
+		color = transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color;
 	}
 	
 	// Update is called once per frame
