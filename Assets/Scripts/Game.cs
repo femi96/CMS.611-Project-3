@@ -19,7 +19,7 @@ public class Game : MonoBehaviour {
 
 	// Game tick variables
 	private float time;
-	private float tickTime = 1f;
+	private float tickTime = 0.15f;
 	private int tick;
 
 
@@ -59,6 +59,7 @@ public class Game : MonoBehaviour {
 
 	// Update cavnasUI each tick
 	void UpdateCanvasUI() {
+
 		wandUI1.transform.Find("MValue").gameObject.GetComponent<Text>().text = wand1.GetMoney().ToString();
 		wandUI1.transform.Find("PValue").gameObject.GetComponent<Text>().text = wand1.GetManPower().ToString();
 
