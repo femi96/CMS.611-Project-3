@@ -11,10 +11,10 @@ public interface IWand {
     
 
     // Get the action on top of the queue
-    Direction? Peek();
+    Direction Peek();
 
     // Get the action on top of the queue and remove it; also updates cursor location
-    Direction? Pop();
+    Direction Pop();
 
     // Gets the trail of actions currently on the queue
     List<Direction> Trail();

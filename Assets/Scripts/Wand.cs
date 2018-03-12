@@ -12,37 +12,62 @@ public class Wand : MonoBehaviour, IWand {
 	private double manPower;
 	private Color color;
 
-    // these need to be initialized appropriately
-    public int x;
-    public int y;
+	private int mapSize = 10;
+	private float offset;
 
-    private LinkedList<Direction> queue;
+	public int controls;
+	public int xInitial;
+	public int yInitial;
+	private int x;
+	private int y;
+
+	private LinkedList<Direction> queue;
 	// Wand variables
 	
 	// Use this for initialization
 	void Start() {
+		x = xInitial;
+		y = yInitial;
+
 		money = 30;
 		manPower = 2;
 		color = transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color;
-        queue = new LinkedList<Direction>();
+		
+		queue = new LinkedList<Direction>();
+
+		// Position offset based on mapSize
+		offset = 0.5f - (mapSize/2f);
+		MoveWand();
 	}
 	
 	// Update is called once per frame
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.W)) {
-            queue.AddLast(Direction.UP);
-        } else if (Input.GetKeyDown(KeyCode.A))
-        {
-            queue.AddLast(Direction.LEFT);
-
-        } else if (Input.GetKeyDown(KeyCode.S))
-        {
-            queue.AddLast(Direction.DOWN);
-            
-        } else if (Input.GetKeyDown(KeyCode.D))
-        {
-            queue.AddLast(Direction.RIGHT);
-        }
+		Direction dir = Direction.NONE;
+		switch(controls) {
+			case 1:
+				if(Input.GetKeyDown(KeyCode.W)) {
+					dir = Direction.UP;
+				} else if(Input.GetKeyDown(KeyCode.A)) {
+					dir = Direction.LEFT;
+				} else if(Input.GetKeyDown(KeyCode.S)) {
+					dir = Direction.DOWN;
+				} else if(Input.GetKeyDown(KeyCode.D)) {
+					dir = Direction.RIGHT;
+				}
+				break;
+			default:
+				if(Input.GetKeyDown(KeyCode.UpArrow)) {
+					dir = Direction.UP;
+				} else if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+					dir = Direction.LEFT;
+				} else if(Input.GetKeyDown(KeyCode.DownArrow)) {
+					dir = Direction.DOWN;
+				} else if(Input.GetKeyDown(KeyCode.RightArrow)) {
+					dir = Direction.RIGHT;
+				}
+				break;
+		}
+		if(dir != Direction.NONE) { queue.AddLast(dir); }
 	}
 
 	public Color GetColor() {
@@ -86,46 +111,34 @@ public class Wand : MonoBehaviour, IWand {
 		return false;
 	}
 
-    public int GetX()
-    {
-        return x;
-    }
-
-    public int GetY()
-    {
-        return y;
-    }
-
-	public Direction? Peek() {
-        if (queue.Count == 0)
-        {
-            return null;
-        }
+	public Direction Peek() {
+		if(queue.Count == 0) {
+			return Direction.NONE;
+		}
 		return queue.First.Value;
 	}
 
-	public Direction? Pop() {
-        if (queue.Count == 0)
-        {
-            return null;
-        }
-        Direction popped = queue.First.Value;
-        queue.RemoveFirst();
-        switch (popped)
-        {
-            case Direction.DOWN:
-                this.y++;
-                break;
-            case Direction.LEFT:
-                this.x--;
-                break;
-            case Direction.RIGHT:
-                this.x++;
-                break;
-            case Direction.UP:
-                this.y--;
-                break;
-        }
+	public Direction Pop() {
+		if(queue.Count == 0) {
+			return Direction.NONE;
+		}
+		Direction popped = queue.First.Value;
+		queue.RemoveFirst();
+		switch(popped) {
+			case Direction.DOWN:
+				y--;
+				break;
+			case Direction.LEFT:
+				x--;
+				break;
+			case Direction.RIGHT:
+				x++;
+				break;
+			case Direction.UP:
+				y++;
+				break;
+		}
+		MoveWand();
 		return popped;
 	}
 
@@ -133,31 +146,35 @@ public class Wand : MonoBehaviour, IWand {
 		return new List<Direction>(queue);
 	}
 
-    public bool Attack(Wand otherPlayer)
-    {
-        if(manPower > otherPlayer.GetManPower())
-        {
-            LoseManPower(manPower / otherPlayer.GetManPower());
-            otherPlayer.LoseManPower(otherPlayer.GetManPower() / manPower);
-            return true;
-        } else if(manPower < otherPlayer.GetManPower())
-        {
-            otherPlayer.LoseManPower(manPower / otherPlayer.GetManPower());
-            LoseManPower(otherPlayer.GetManPower() / manPower);
-            return false;
-        } else
-        {
-            bool moneyGreater = money >= otherPlayer.GetMoney();
-            if(moneyGreater)
-            {
-                LoseMoney(otherPlayer.GetMoney() + 1);
-                otherPlayer.LoseMoney(otherPlayer.GetMoney());
-            } else
-            {
-                otherPlayer.LoseMoney(money + 1);
-                LoseMoney(money);
-            }
-            return moneyGreater;
-        }
-    } 
+	private void MoveWand() {
+		transform.position = new Vector2(x + offset, y + offset);
+	}
+
+	public bool Attack(Wand otherPlayer)
+	{
+		if(manPower > otherPlayer.GetManPower())
+		{
+			LoseManPower(manPower / otherPlayer.GetManPower());
+			otherPlayer.LoseManPower(otherPlayer.GetManPower() / manPower);
+			return true;
+		} else if(manPower < otherPlayer.GetManPower())
+		{
+			otherPlayer.LoseManPower(manPower / otherPlayer.GetManPower());
+			LoseManPower(otherPlayer.GetManPower() / manPower);
+			return false;
+		} else
+		{
+			bool moneyGreater = money >= otherPlayer.GetMoney();
+			if(moneyGreater)
+			{
+				LoseMoney(otherPlayer.GetMoney() + 1);
+				otherPlayer.LoseMoney(otherPlayer.GetMoney());
+			} else
+			{
+				otherPlayer.LoseMoney(money + 1);
+				LoseMoney(money);
+			}
+			return moneyGreater;
+		}
+	} 
 }
