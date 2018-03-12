@@ -46,6 +46,9 @@ public class Game : MonoBehaviour {
 		time -= tickTime;
 		tick += 1;
 		
+		wand1.Pop();
+		wand2.Pop();
+
 		for(int y = 0; y < map.GetMapSize(); y++) {
 			for(int x = 0; x < map.GetMapSize(); x++) {
 				map.GetPlace(x, y).Generate();

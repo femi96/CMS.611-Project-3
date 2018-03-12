@@ -201,6 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701f2e3dfc96b7e4d9e5f71fc58c5eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controls: 1
+  xInitial: 1
+  yInitial: 1
 --- !u!114 &114358142662181594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -240,6 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701f2e3dfc96b7e4d9e5f71fc58c5eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controls: 0
+  xInitial: 8
+  yInitial: 8
 --- !u!212 &212442262624286944
 SpriteRenderer:
   m_ObjectHideFlags: 1
