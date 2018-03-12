@@ -6,7 +6,9 @@ public class Apartment : Place {
 	// PoliceStation:
 	//		Data type that holds a position's data.
 
-	public Apartment() {}
+	public Apartment() {
+        SetType(PlaceType.Apartment);
+    }
 
 	public override bool TakeOver(Wand player) {
         if (!IsOwned())

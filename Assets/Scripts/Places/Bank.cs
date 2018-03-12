@@ -6,7 +6,9 @@ public class Bank : Place {
 	// Bank:
 	//		Data type that holds a position's data.
 
-	public Bank() {}
+	public Bank() {
+        SetType(PlaceType.Bank);
+    }
 
 	public override bool TakeOver(Wand player) {
         if (IsOwned())

@@ -6,7 +6,9 @@ public class PizzaPlace : Place {
 	// PizzaPlace:
 	//		Data type that holds a position's data.
 
-	public PizzaPlace() {}
+	public PizzaPlace() {
+        SetType(PlaceType.Pizza);
+    }
 
     // Called when trying to takeover a location.
     //		Takes wand of attempting player, for player's money and manpower

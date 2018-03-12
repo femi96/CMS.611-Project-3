@@ -29,8 +29,8 @@ public class Wand : MonoBehaviour, IWand {
 		x = xInitial;
 		y = yInitial;
 
-		money = 300;
-		manPower = 20;
+		money = 30;
+		manPower = 2;
 		color = transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color;
 		
 		queue = new LinkedList<Direction>();

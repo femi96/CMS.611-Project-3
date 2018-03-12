@@ -4,5 +4,8 @@ using UnityEngine;
 
 public enum PlaceType {
 	Default,
-	Police
+	Police,
+	Bank,
+	Apartment,
+	Pizza
 };

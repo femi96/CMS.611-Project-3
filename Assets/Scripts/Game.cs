@@ -66,9 +66,11 @@ public class Game : MonoBehaviour {
 		map.GetPlace(wand2.GetPosition()).TakeOver(wand2);
 		map.UpdateMap();
 
-		for(int y = 0; y < map.GetMapSize(); y++) {
-			for(int x = 0; x < map.GetMapSize(); x++) {
-				map.GetPlace(x, y).Generate();
+		if(tick % 5 == 0) {
+			for(int y = 0; y < map.GetMapSize(); y++) {
+				for(int x = 0; x < map.GetMapSize(); x++) {
+					map.GetPlace(x, y).Generate();
+				}
 			}
 		}
 		UpdateCanvasUI();
