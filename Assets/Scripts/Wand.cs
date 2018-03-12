@@ -20,6 +20,8 @@ public class Wand : MonoBehaviour, IWand {
 	public int yInitial;
 	private int x;
 	private int y;
+	private int qx;
+	private int qy;
 
 	private LinkedList<Direction> queue;
 	// Wand variables
@@ -28,6 +30,8 @@ public class Wand : MonoBehaviour, IWand {
 	void Start() {
 		x = xInitial;
 		y = yInitial;
+		qx = x;
+		qy = y;
 
 		money = 30;
 		manPower = 2;
@@ -46,28 +50,54 @@ public class Wand : MonoBehaviour, IWand {
 		switch(controls) {
 			case 1:
 				if(Input.GetKeyDown(KeyCode.W)) {
-					dir = Direction.UP;
+					if (CanMove (qx, qy + 1)) {
+						dir = Direction.UP;
+						qy++;
+					}
 				} else if(Input.GetKeyDown(KeyCode.A)) {
-					dir = Direction.LEFT;
+					if (CanMove (qx - 1, qy)) {
+						dir = Direction.LEFT;
+						qx--;
+					}
 				} else if(Input.GetKeyDown(KeyCode.S)) {
-					dir = Direction.DOWN;
+					if (CanMove (qx, qy - 1)) {
+						dir = Direction.DOWN;
+						qy--;
+					}
 				} else if(Input.GetKeyDown(KeyCode.D)) {
-					dir = Direction.RIGHT;
+					if (CanMove (qx + 1, qy)) {
+						dir = Direction.RIGHT;
+						qx++;
+					}
 				}
 				break;
 			default:
 				if(Input.GetKeyDown(KeyCode.UpArrow)) {
-					dir = Direction.UP;
+					if (CanMove (qx, qy + 1)) {
+						dir = Direction.UP;
+						qy++;
+					}
 				} else if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-					dir = Direction.LEFT;
+					if (CanMove (qx - 1, qy)) {
+						dir = Direction.LEFT;
+						qx--;
+					}
 				} else if(Input.GetKeyDown(KeyCode.DownArrow)) {
-					dir = Direction.DOWN;
+					if (CanMove (qx, qy - 1)) {
+						dir = Direction.DOWN;
+						qy--;
+					}
 				} else if(Input.GetKeyDown(KeyCode.RightArrow)) {
-					dir = Direction.RIGHT;
+					if (CanMove (qx + 1, qy)) {
+						dir = Direction.RIGHT;
+						qx++;
+					}
 				}
 				break;
 		}
-		if(dir != Direction.NONE) { queue.AddLast(dir); }
+		if(dir != Direction.NONE) {
+			queue.AddLast(dir);
+		}
 	}
 
 	public Color GetColor() {
@@ -130,20 +160,26 @@ public class Wand : MonoBehaviour, IWand {
 					y--;
 				} else {
 					queue.Clear ();
+					qx = x;
+					qy = y;
 				}
 				break;
 			case Direction.LEFT:
 				if (CanMove(x-1,y)) {
 					x--;
 				} else {
-					queue.Clear();
+					queue.Clear ();
+					qx = x;
+					qy = y;
 				}
 				break;
 			case Direction.RIGHT:
 				if (CanMove(x+1,y)) {
 					x++;
 				} else {
-					queue.Clear();
+					queue.Clear ();
+					qx = x;
+					qy = y;
 				}
 				break;
 			case Direction.UP:
@@ -151,6 +187,8 @@ public class Wand : MonoBehaviour, IWand {
 					y++;
 				} else {
 					queue.Clear ();
+					qx = x;
+					qy = y;
 				}
 				break;
 		}
