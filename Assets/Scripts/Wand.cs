@@ -12,11 +12,17 @@ public class Wand : MonoBehaviour, IWand {
 	private double manPower;
 	private Color color;
 
+    private int x;
+    private int y;
+    private List<Direction> trail;
+	// Wand variables
+	
 
 	// Use this for initialization
 	void Start() {
 		money = 30;
 		manPower = 2;
+		color = transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color;
 	}
 	
 	// Update is called once per frame
@@ -65,6 +71,16 @@ public class Wand : MonoBehaviour, IWand {
 		return false;
 	}
 
+    public int GetX()
+    {
+        return x;
+    }
+
+    public int GetY()
+    {
+        return y;
+    }
+
 	public Direction Peek() {
 		return Direction.UP;
 	}
@@ -76,4 +92,32 @@ public class Wand : MonoBehaviour, IWand {
 	public List<Direction> Trail() {
 		return new List<Direction>();
 	}
+
+    public bool Attack(Wand otherPlayer)
+    {
+        if(manPower > otherPlayer.GetManPower())
+        {
+            LoseManPower(manPower / otherPlayer.GetManPower());
+            otherPlayer.LoseManPower(otherPlayer.GetManPower() / manPower);
+            return true;
+        } else if(manPower < otherPlayer.GetManPower())
+        {
+            otherPlayer.LoseManPower(manPower / otherPlayer.GetManPower());
+            LoseManPower(otherPlayer.GetManPower() / manPower);
+            return false;
+        } else
+        {
+            bool moneyGreater = money >= otherPlayer.GetMoney();
+            if(moneyGreater)
+            {
+                LoseMoney(otherPlayer.GetMoney() + 1);
+                otherPlayer.LoseMoney(otherPlayer.GetMoney());
+            } else
+            {
+                otherPlayer.LoseMoney(money + 1);
+                LoseMoney(money);
+            }
+            return moneyGreater;
+        }
+    } 
 }

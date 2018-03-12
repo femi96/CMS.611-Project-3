@@ -25,4 +25,5 @@ public interface IWand {
 	void AddManPower(double m);
 	bool LoseMoney(double m);
 	bool LoseManPower(double m);
+    bool Attack(Wand otherPlayer);
 }

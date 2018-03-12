@@ -2,4 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlaceType { Default };
+public enum PlaceType {
+	Default,
+	Police
+};
