@@ -11,11 +11,22 @@ public class PoliceStation : Place {
 	}
 
 	public override bool TakeOver(Wand player) {
-		return (player.LoseMoney(20) && player.LoseManPower(5)); // NOTE: THIS MEANS A PLAYER WILL LOSE
-		// ONE RESOURCE AND FAIL TO TAKE OVER
-		// If they don't have enough of both,
-		// not sure if we want that, let's see how it plays
-	}
+
+        if (!IsOwned())
+        {
+            bool canTakeOver = player.LoseManPower(2) && player.LoseMoney(15);
+            if(canTakeOver)
+            {
+                SetOwner(player);
+            }
+            return canTakeOver;
+        }
+        else
+        {
+            bool wonTakeOver = player.Attack(GetOwner());
+            return wonTakeOver;
+        }
+    }
 
 	public override void Generate() {
 		Wand owner = GetOwner();
