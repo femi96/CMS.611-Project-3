@@ -126,16 +126,24 @@ public class Wand : MonoBehaviour, IWand {
 		queue.RemoveFirst();
 		switch(popped) {
 			case Direction.DOWN:
-				y--;
+				if (y != 0) {
+					y--;
+				}
 				break;
 			case Direction.LEFT:
-				x--;
+				if (x != 0) {
+					x--;
+				}
 				break;
 			case Direction.RIGHT:
-				x++;
+				if (x != mapSize - 1) {
+					x++;
+				}
 				break;
 			case Direction.UP:
-				y++;
+				if (y != mapSize - 1) {
+					y++;
+				}
 				break;
 		}
 		MoveWand();
