@@ -10,15 +10,18 @@ public class Game : MonoBehaviour {
 
 	
 	// Game variables
+	public GameState gameState;
+
 	private IWand wand1;
 	private IWand wand2;
 	private Map map;
 	
-	// Game variables
+	// UI variables
 	public GameObject wandUI1;
 	public GameObject wandUI2;
 
-	// UI variables
+	public GameObject pausedUI;
+
 	private Text wandUI1money;
 	private Text wandUI2money;
 	private Text wandUI1power;
@@ -44,20 +47,27 @@ public class Game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
+		ChangeGameState(GameState.Paused);
+
 		time = 0;
 		UpdateCanvasUI();
 	}
 	
 	// Update is called once per frame
 	void Update() {
+
 		time += Time.deltaTime;
 		if(time > tickTime) GameTick();
 
 		if(Input.GetKeyDown(KeyCode.O)) { Application.LoadLevel(Application.loadedLevel); }
+		if(Input.GetKeyDown(KeyCode.P)) {
+			if(gameState == GameState.Playing) { ChangeGameState(GameState.Paused); } else
+			if(gameState == GameState.Paused) { ChangeGameState(GameState.Playing); }
+		}
 	}
 
 	// Game tick
-	void GameTick() {
+	private void GameTick() {
 		time -= tickTime;
 		tick += 1;
 		
@@ -96,11 +106,23 @@ public class Game : MonoBehaviour {
 	}
 
 	// Update cavnasUI each tick
-	void UpdateCanvasUI() {
+	private void UpdateCanvasUI() {
 		wandUI1money.text = wand1.GetMoney().ToString();
 		wandUI1power.text = wand1.GetManPower().ToString();
 
 		wandUI2money.text = wand2.GetMoney().ToString();
 		wandUI2power.text = wand2.GetManPower().ToString();
+	}
+
+	private void ChangeGameState(GameState newState) {
+		gameState = newState;
+
+		if(gameState == GameState.Playing) {
+			Time.timeScale = 1;
+		} else {
+			Time.timeScale = 0;
+		}
+
+		pausedUI.SetActive(gameState == GameState.Paused);
 	}
 }

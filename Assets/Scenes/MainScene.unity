@@ -167,6 +167,11 @@ Prefab:
       propertyPath: wandUI2
       value: 
       objectReference: {fileID: 440170790}
+    - target: {fileID: 114363294417555008, guid: 628372f613f39194cbf22902e6691adb,
+        type: 2}
+      propertyPath: pausedUI
+      value: 
+      objectReference: {fileID: 2065713074}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 628372f613f39194cbf22902e6691adb, type: 2}
   m_IsPrefabParent: 0
@@ -480,5 +485,10 @@ Transform:
 --- !u!1 &2030360048 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1722913851367652, guid: 8e15aed4768457349afd17c22af4f4f1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1399147467}
+--- !u!1 &2065713074 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1422767144514728, guid: 8e15aed4768457349afd17c22af4f4f1,
     type: 2}
   m_PrefabInternal: {fileID: 1399147467}
