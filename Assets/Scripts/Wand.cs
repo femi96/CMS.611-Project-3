@@ -12,22 +12,37 @@ public class Wand : MonoBehaviour, IWand {
 	private double manPower;
 	private Color color;
 
-    private int x;
-    private int y;
-    private List<Direction> trail;
+    // these need to be initialized appropriately
+    public int x;
+    public int y;
+
+    private LinkedList<Direction> queue;
 	// Wand variables
 	
-
 	// Use this for initialization
 	void Start() {
 		money = 30;
 		manPower = 2;
 		color = transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color;
+        queue = new LinkedList<Direction>();
 	}
 	
 	// Update is called once per frame
 	void Update() {
-		
+		if (Input.GetKeyDown(KeyCode.W)) {
+            queue.AddLast(Direction.UP);
+        } else if (Input.GetKeyDown(KeyCode.A))
+        {
+            queue.AddLast(Direction.LEFT);
+
+        } else if (Input.GetKeyDown(KeyCode.S))
+        {
+            queue.AddLast(Direction.DOWN);
+            
+        } else if (Input.GetKeyDown(KeyCode.D))
+        {
+            queue.AddLast(Direction.RIGHT);
+        }
 	}
 
 	public Color GetColor() {
@@ -81,16 +96,41 @@ public class Wand : MonoBehaviour, IWand {
         return y;
     }
 
-	public Direction Peek() {
-		return Direction.UP;
+	public Direction? Peek() {
+        if (queue.Count == 0)
+        {
+            return null;
+        }
+		return queue.First.Value;
 	}
 
-	public Direction Pop() {
-		return Direction.UP;
+	public Direction? Pop() {
+        if (queue.Count == 0)
+        {
+            return null;
+        }
+        Direction popped = queue.First.Value;
+        queue.RemoveFirst();
+        switch (popped)
+        {
+            case Direction.DOWN:
+                this.y++;
+                break;
+            case Direction.LEFT:
+                this.x--;
+                break;
+            case Direction.RIGHT:
+                this.x++;
+                break;
+            case Direction.UP:
+                this.y--;
+                break;
+        }
+		return popped;
 	}
 
 	public List<Direction> Trail() {
-		return new List<Direction>();
+		return new List<Direction>(queue);
 	}
 
     public bool Attack(Wand otherPlayer)
