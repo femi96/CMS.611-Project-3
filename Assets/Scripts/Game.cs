@@ -45,6 +45,7 @@ public class Game : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		time = 0;
+		UpdateCanvasUI();
 	}
 	
 	// Update is called once per frame
@@ -75,9 +76,7 @@ public class Game : MonoBehaviour {
 
 	// Update cavnasUI each tick
 	void UpdateCanvasUI() {
-		String sm1 = wand1.GetMoney().ToString();
-		Debug.Log(sm1);
-		wandUI1money.text = sm1;
+		wandUI1money.text = wand1.GetMoney().ToString();
 		wandUI1power.text = wand1.GetManPower().ToString();
 
 		wandUI2money.text = wand2.GetMoney().ToString();
