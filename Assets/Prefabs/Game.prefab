@@ -201,6 +201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701f2e3dfc96b7e4d9e5f71fc58c5eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 0
+  manPower: 0
   controls: 1
   xInitial: 1
   yInitial: 1
@@ -230,8 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7643e083fb15b48980a271d7dea318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wandUI1: {fileID: 1722913851367652, guid: 8e15aed4768457349afd17c22af4f4f1, type: 2}
-  wandUI2: {fileID: 1219159832416278, guid: 8e15aed4768457349afd17c22af4f4f1, type: 2}
+  wandUI1: {fileID: 0}
+  wandUI2: {fileID: 0}
 --- !u!114 &114821677523423312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,6 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701f2e3dfc96b7e4d9e5f71fc58c5eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 0
+  manPower: 0
   controls: 0
   xInitial: 8
   yInitial: 8

@@ -8,8 +8,8 @@ public class Wand : MonoBehaviour, IWand {
 
 
 	// Wand variables
-	private double money;
-	private double manPower;
+	public double money;
+	public double manPower;
 	private Color color;
 
 	private int mapSize = 10;
@@ -29,8 +29,8 @@ public class Wand : MonoBehaviour, IWand {
 		x = xInitial;
 		y = yInitial;
 
-		money = 30;
-		manPower = 2;
+		money = 300;
+		manPower = 20;
 		color = transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color;
 		
 		queue = new LinkedList<Direction>();

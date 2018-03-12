@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,12 @@ public class Game : MonoBehaviour {
 	public GameObject wandUI1;
 	public GameObject wandUI2;
 
+	// UI variables
+	private Text wandUI1money;
+	private Text wandUI2money;
+	private Text wandUI1power;
+	private Text wandUI2power;
+
 	// Game tick variables
 	private float time;
 	private float tickTime = 1f;
@@ -28,6 +35,11 @@ public class Game : MonoBehaviour {
 		map = transform.Find("Map").gameObject.GetComponent<Map>();
 		wand1 = transform.Find("Wand1").gameObject.GetComponent<Wand>();
 		wand2 = transform.Find("Wand2").gameObject.GetComponent<Wand>();
+
+		wandUI1money = wandUI1.transform.Find("MValue").gameObject.GetComponent<Text>();
+		wandUI1power = wandUI1.transform.Find("PValue").gameObject.GetComponent<Text>();
+		wandUI2money = wandUI2.transform.Find("MValue").gameObject.GetComponent<Text>();
+		wandUI2power = wandUI2.transform.Find("PValue").gameObject.GetComponent<Text>();
 	}
 
 	// Use this for initialization
@@ -48,6 +60,10 @@ public class Game : MonoBehaviour {
 		
 		wand1.Pop();
 		wand2.Pop();
+		
+		map.GetPlace(wand1.GetPosition()).TakeOver(wand1);
+		map.GetPlace(wand2.GetPosition()).TakeOver(wand2);
+		map.UpdateMap();
 
 		for(int y = 0; y < map.GetMapSize(); y++) {
 			for(int x = 0; x < map.GetMapSize(); x++) {
@@ -59,10 +75,12 @@ public class Game : MonoBehaviour {
 
 	// Update cavnasUI each tick
 	void UpdateCanvasUI() {
-		wandUI1.transform.Find("MValue").gameObject.GetComponent<Text>().text = wand1.GetMoney().ToString();
-		wandUI1.transform.Find("PValue").gameObject.GetComponent<Text>().text = wand1.GetManPower().ToString();
+		String sm1 = wand1.GetMoney().ToString();
+		Debug.Log(sm1);
+		wandUI1money.text = sm1;
+		wandUI1power.text = wand1.GetManPower().ToString();
 
-		wandUI2.transform.Find("MValue").gameObject.GetComponent<Text>().text = wand2.GetMoney().ToString();
-		wandUI2.transform.Find("PValue").gameObject.GetComponent<Text>().text = wand2.GetManPower().ToString();
+		wandUI2money.text = wand2.GetMoney().ToString();
+		wandUI2power.text = wand2.GetManPower().ToString();
 	}
 }
