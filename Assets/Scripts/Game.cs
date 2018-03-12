@@ -10,8 +10,8 @@ public class Game : MonoBehaviour {
 
 	
 	// Game variables
-	private Wand wand1;
-	private Wand wand2;
+	private IWand wand1;
+	private IWand wand2;
 	private Map map;
 	
 	// Game variables
@@ -62,8 +62,9 @@ public class Game : MonoBehaviour {
 		wand1.Pop();
 		wand2.Pop();
 		
-		map.GetPlace(wand1.GetPosition()).TakeOver(wand1);
-		map.GetPlace(wand2.GetPosition()).TakeOver(wand2);
+		WandTakeOver(wand1);
+		WandTakeOver(wand2);
+		
 		map.UpdateMap();
 
 		if(tick % 5 == 0) {
@@ -74,6 +75,19 @@ public class Game : MonoBehaviour {
 			}
 		}
 		UpdateCanvasUI();
+	}
+
+	// Wand takeover position
+	private void WandTakeOver(IWand wand) {
+		
+		IPlace place = map.GetPlace(wand.GetPosition());
+		if(place.GetOwner() != wand) {
+			if(place.TakeOver(wand)) {
+				place.SetOwner(wand);
+			}
+		} else if(place.GetOwner() != null) {
+			// Attack cause owner
+		}
 	}
 
 	// Update cavnasUI each tick

@@ -96,7 +96,7 @@ public class Wand : MonoBehaviour, IWand {
 		
 	// Lose methods return true if possible, return false if not possible
 	public bool LoseMoney(double m){
-		if (money > m) {
+		if (money >= m) {
 			money = money - m;
 			return true;
 		}
@@ -104,7 +104,7 @@ public class Wand : MonoBehaviour, IWand {
 	}
 
 	public bool LoseManPower(double m){
-		if (manPower > m) {
+		if (manPower >= m) {
 			manPower = manPower - m;
 			return true;
 		}
@@ -150,7 +150,7 @@ public class Wand : MonoBehaviour, IWand {
 		transform.position = new Vector2(x + offset, y + offset);
 	}
 
-	public bool Attack(Wand otherPlayer)
+	public bool Attack(IWand otherPlayer)
 	{
 		if(manPower > otherPlayer.GetManPower())
 		{

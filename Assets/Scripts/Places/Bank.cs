@@ -10,24 +10,12 @@ public class Bank : Place {
         SetType(PlaceType.Bank);
     }
 
-	public override bool TakeOver(Wand player) {
-        if (IsOwned())
-        {
-            bool canTakeOver = player.LoseManPower(3) && player.LoseMoney(20);
-            if (canTakeOver)
-            {
-                SetOwner(player);
-            }
-            return canTakeOver;
-        } else
-        {
-            bool wonTakeOver = player.Attack(GetOwner());
-            return wonTakeOver;
-        }
+	public override bool TakeOver(IWand player) {
+        return player.LoseManPower(3) && player.LoseMoney(20);
     }
 
 	public override void Generate() {
-		Wand owner = GetOwner();
+		IWand owner = GetOwner();
 		if (owner != null) {
 			owner.AddMoney(8);
 			owner.AddManPower(0);

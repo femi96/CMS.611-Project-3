@@ -10,26 +10,12 @@ public class PoliceStation : Place {
 		SetType(PlaceType.Police);
 	}
 
-	public override bool TakeOver(Wand player) {
-
-        if (!IsOwned())
-        {
-            bool canTakeOver = player.LoseManPower(2) && player.LoseMoney(15);
-            if(canTakeOver)
-            {
-                SetOwner(player);
-            }
-            return canTakeOver;
-        }
-        else
-        {
-            bool wonTakeOver = player.Attack(GetOwner());
-            return wonTakeOver;
-        }
-    }
+	public override bool TakeOver(IWand player) {
+		return player.LoseManPower(2) && player.LoseMoney(15);
+	}
 
 	public override void Generate() {
-		Wand owner = GetOwner();
+		IWand owner = GetOwner();
 		if (owner != null) {
 			owner.AddMoney(8);
 			owner.AddManPower(2);

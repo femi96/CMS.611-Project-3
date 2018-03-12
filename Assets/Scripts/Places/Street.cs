@@ -8,25 +8,11 @@ public class Street : Place {
 
 	public Street() {}
 
-    public override bool TakeOver(Wand player)
-    {
-        if (!IsOwned())
-        {
-            SetOwner(player);
-            return true;
-        }
-        else
-        {
-            bool wonTakeOver = player.Attack(GetOwner());
-            return wonTakeOver;
-        }
-    }
+	public override bool TakeOver(IWand player) {
+		return false;
+	}
 
 	public override void Generate() {
-        if(IsOwned())
-        {
-            GetOwner().AddManPower(1);
-        }
 		return;
 	}
 }
