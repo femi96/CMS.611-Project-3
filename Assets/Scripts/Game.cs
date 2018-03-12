@@ -67,7 +67,7 @@ public class Game : MonoBehaviour {
 		
 		map.UpdateMap();
 
-		if(tick % 5 == 0) {
+		if(tick % 4 == 0 || true) {
 			for(int y = 0; y < map.GetMapSize(); y++) {
 				for(int x = 0; x < map.GetMapSize(); x++) {
 					map.GetPlace(x, y).Generate();
@@ -81,12 +81,15 @@ public class Game : MonoBehaviour {
 	private void WandTakeOver(IWand wand) {
 		
 		IPlace place = map.GetPlace(wand.GetPosition());
-		if(place.GetOwner() != wand) {
+		if(place.GetOwner() == null) {
 			if(place.TakeOver(wand)) {
 				place.SetOwner(wand);
 			}
-		} else if(place.GetOwner() != null) {
+		} else if(place.GetOwner() != wand) {
 			// Attack cause owner
+			if(wand.Attack(place.GetOwner())) {
+				place.SetOwner(wand);
+			}
 		}
 	}
 

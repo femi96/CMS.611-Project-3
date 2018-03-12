@@ -150,27 +150,28 @@ public class Wand : MonoBehaviour, IWand {
 		transform.position = new Vector2(x + offset, y + offset);
 	}
 
-	public bool Attack(IWand otherPlayer)
-	{
-		if(manPower > otherPlayer.GetManPower())
-		{
+	public bool Attack(IWand otherPlayer) {
+		
+		if(manPower > otherPlayer.GetManPower()) {
 			LoseManPower(manPower / otherPlayer.GetManPower());
 			otherPlayer.LoseManPower(otherPlayer.GetManPower() / manPower);
 			return true;
-		} else if(manPower < otherPlayer.GetManPower())
-		{
+
+		} else if(manPower < otherPlayer.GetManPower()) {
 			otherPlayer.LoseManPower(manPower / otherPlayer.GetManPower());
 			LoseManPower(otherPlayer.GetManPower() / manPower);
 			return false;
-		} else
-		{
+
+		} else {
 			bool moneyGreater = money >= otherPlayer.GetMoney();
-			if(moneyGreater)
-			{
+
+			if(moneyGreater) {
+
 				LoseMoney(otherPlayer.GetMoney() + 1);
 				otherPlayer.LoseMoney(otherPlayer.GetMoney());
-			} else
-			{
+
+			} else {
+
 				otherPlayer.LoseMoney(money + 1);
 				LoseMoney(money);
 			}

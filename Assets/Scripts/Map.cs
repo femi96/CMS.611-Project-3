@@ -32,8 +32,11 @@ public class Map : MonoBehaviour, IMap {
 		placeGOGrid = new GameObject[mapSize, mapSize];
 		for(int y = 0; y < mapSize; y++) {
 			for(int x = 0; x < mapSize; x++) {
-				if(x==1) { placeGrid[x, y] = new PoliceStation();}
-				else { placeGrid[x, y] = new Apartment(); }
+				placeGrid[x, y] = new Apartment();
+				if((x + y) % 3 == 0) { placeGrid[x, y] = new PizzaPlace(); }
+				if((x - y) % 3 == 0) { placeGrid[x, y] = new PoliceStation(); }
+				if((x - y) % 3 == 0 && y < 7 && y > 2) { placeGrid[x, y] = new Bank(); }
+				if(x % 3 == 0 || y == 2 || y == 7) { placeGrid[x, y] = new Street(); }
 			}
 		}
 		UpdateMap();
