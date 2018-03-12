@@ -26,4 +26,5 @@ public interface IWand {
 	bool LoseMoney(double m);
 	bool LoseManPower(double m);
     bool Attack(IWand otherPlayer);
+	bool CanMove (int x_new, int y_new);
 }

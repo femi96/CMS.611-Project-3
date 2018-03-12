@@ -126,28 +126,40 @@ public class Wand : MonoBehaviour, IWand {
 		queue.RemoveFirst();
 		switch(popped) {
 			case Direction.DOWN:
-				if (y != 0) {
+				if (CanMove (x, y - 1)) {
 					y--;
+				} else {
+					queue.Clear ();
 				}
 				break;
 			case Direction.LEFT:
-				if (x != 0) {
+				if (CanMove(x-1,y)) {
 					x--;
+				} else {
+					queue.Clear();
 				}
 				break;
 			case Direction.RIGHT:
-				if (x != mapSize - 1) {
+				if (CanMove(x+1,y)) {
 					x++;
+				} else {
+					queue.Clear();
 				}
 				break;
 			case Direction.UP:
-				if (y != mapSize - 1) {
+				if (CanMove (x, y + 1)) {
 					y++;
+				} else {
+					queue.Clear ();
 				}
 				break;
 		}
 		MoveWand();
 		return popped;
+	}
+
+	public bool CanMove(int x_new, int y_new){
+		return !(y_new < 0 || x_new < 0 || y_new >= mapSize || x_new >= mapSize);
 	}
 
 	public List<Direction> Trail() {
