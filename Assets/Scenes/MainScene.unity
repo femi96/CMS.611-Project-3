@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &440170790 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1219159832416278, guid: 8e15aed4768457349afd17c22af4f4f1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1399147467}
 --- !u!1001 &449660434
 Prefab:
   m_ObjectHideFlags: 0
@@ -152,6 +157,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114363294417555008, guid: 628372f613f39194cbf22902e6691adb,
+        type: 2}
+      propertyPath: wandUI1
+      value: 
+      objectReference: {fileID: 2030360048}
+    - target: {fileID: 114363294417555008, guid: 628372f613f39194cbf22902e6691adb,
+        type: 2}
+      propertyPath: wandUI2
+      value: 
+      objectReference: {fileID: 440170790}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 628372f613f39194cbf22902e6691adb, type: 2}
   m_IsPrefabParent: 0
@@ -462,3 +477,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2030360048 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1722913851367652, guid: 8e15aed4768457349afd17c22af4f4f1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1399147467}

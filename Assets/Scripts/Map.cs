@@ -32,15 +32,26 @@ public class Map : MonoBehaviour, IMap {
 		placeGOGrid = new GameObject[mapSize, mapSize];
 		for(int y = 0; y < mapSize; y++) {
 			for(int x = 0; x < mapSize; x++) {
-				if(x==1) { placeGrid[x, y] = new PoliceStation();}
-				else { placeGrid[x, y] = new PizzaPlace(); }
-				UpdateGO(x, y);
+				placeGrid[x, y] = new Apartment();
+				if((x + y) % 3 == 0) { placeGrid[x, y] = new PizzaPlace(); }
+				if((x - y) % 3 == 0) { placeGrid[x, y] = new PoliceStation(); }
+				if((x - y) % 3 == 0 && y < 7 && y > 2) { placeGrid[x, y] = new Bank(); }
+				if(x % 3 == 0 || y == 2 || y == 7) { placeGrid[x, y] = new Street(); }
 			}
 		}
+		UpdateMap();
 	}
 	
 	// Update is called once per frame
 	void Update() {}
+
+	public void UpdateMap() {
+		for(int y = 0; y < mapSize; y++) {
+			for(int x = 0; x < mapSize; x++) {
+				UpdateGO(x, y);
+			}
+		}
+	}
 
 	public int GetMapSize(){
 		return mapSize;
@@ -52,8 +63,8 @@ public class Map : MonoBehaviour, IMap {
 	}
 
 	public IPlace GetPlace(Vector2 v) {
-		int x = Mathf.FloorToInt(v.x);
-		int y = Mathf.FloorToInt(v.y);
+		int x = Mathf.FloorToInt(v.x + mapSize/2f);
+		int y = Mathf.FloorToInt(v.y + mapSize/2f);
 		return GetPlace(x, y);
 	}
 

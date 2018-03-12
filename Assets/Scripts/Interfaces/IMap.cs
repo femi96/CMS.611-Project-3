@@ -20,4 +20,6 @@ public interface IMap {
 	// Get the map's size
 	//		Returns map's grid size as int
 	int GetMapSize();
+
+	void UpdateMap();
 }

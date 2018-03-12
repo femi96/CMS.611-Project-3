@@ -201,6 +201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701f2e3dfc96b7e4d9e5f71fc58c5eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 0
+  manPower: 0
   controls: 1
   xInitial: 1
   yInitial: 1
@@ -218,7 +220,10 @@ MonoBehaviour:
   newPlace: {fileID: 1114881791901774, guid: 30f34f58c8799ca4bb90512a35c57f3f, type: 2}
   typeSprites:
   - {fileID: 21300000, guid: 0f9c8b752f0011b49a82d2ce86e163e7, type: 3}
-  typeIndex: 01000000
+  - {fileID: 21300000, guid: 13d87f7ddd357a04d87e0a6d4251b61d, type: 3}
+  - {fileID: 21300000, guid: 3bf7d19275048654a8b6efa50fb31bef, type: 3}
+  - {fileID: 21300000, guid: 3e09b31d2de0fef40847702d33b3a99d, type: 3}
+  typeIndex: 01000000040000000200000003000000
 --- !u!114 &114363294417555008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7643e083fb15b48980a271d7dea318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wandUI1: {fileID: 1722913851367652, guid: 8e15aed4768457349afd17c22af4f4f1, type: 2}
-  wandUI2: {fileID: 1219159832416278, guid: 8e15aed4768457349afd17c22af4f4f1, type: 2}
+  wandUI1: {fileID: 0}
+  wandUI2: {fileID: 0}
 --- !u!114 &114821677523423312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,6 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701f2e3dfc96b7e4d9e5f71fc58c5eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 0
+  manPower: 0
   controls: 0
   xInitial: 8
   yInitial: 8

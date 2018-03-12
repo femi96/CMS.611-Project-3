@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,17 +10,23 @@ public class Game : MonoBehaviour {
 
 	
 	// Game variables
-	private Wand wand1;
-	private Wand wand2;
+	private IWand wand1;
+	private IWand wand2;
 	private Map map;
 	
 	// Game variables
 	public GameObject wandUI1;
 	public GameObject wandUI2;
 
+	// UI variables
+	private Text wandUI1money;
+	private Text wandUI2money;
+	private Text wandUI1power;
+	private Text wandUI2power;
+
 	// Game tick variables
 	private float time;
-	private float tickTime = 0.15f;
+	private float tickTime = 0.4f;
 	private int tick;
 
 
@@ -28,19 +35,31 @@ public class Game : MonoBehaviour {
 		map = transform.Find("Map").gameObject.GetComponent<Map>();
 		wand1 = transform.Find("Wand1").gameObject.GetComponent<Wand>();
 		wand2 = transform.Find("Wand2").gameObject.GetComponent<Wand>();
+
+		wandUI1money = wandUI1.transform.Find("MValue").gameObject.GetComponent<Text>();
+		wandUI1power = wandUI1.transform.Find("PValue").gameObject.GetComponent<Text>();
+		wandUI2money = wandUI2.transform.Find("MValue").gameObject.GetComponent<Text>();
+		wandUI2power = wandUI2.transform.Find("PValue").gameObject.GetComponent<Text>();
 	}
 
 	// Use this for initialization
 	void Start() {
 		time = 0;
+		UpdateCanvasUI();
 	}
 	
 	// Update is called once per frame
 	void Update() {
 		time += Time.deltaTime;
 		if(time > tickTime) GameTick();
+
+		if(Input.GetKeyDown(KeyCode.O)) { Application.LoadLevel(Application.loadedLevel); }
 	}
 
+    void MovementTick()
+    {
+        
+    }
 	// Game tick
 	void GameTick() {
 		time -= tickTime;
@@ -48,22 +67,45 @@ public class Game : MonoBehaviour {
 		
 		wand1.Pop();
 		wand2.Pop();
+		
+		WandTakeOver(wand1);
+		WandTakeOver(wand2);
+		
+		map.UpdateMap();
 
-		for(int y = 0; y < map.GetMapSize(); y++) {
-			for(int x = 0; x < map.GetMapSize(); x++) {
-				map.GetPlace(x, y).Generate();
+		if(tick % 4 == 0 || true) {
+			for(int y = 0; y < map.GetMapSize(); y++) {
+				for(int x = 0; x < map.GetMapSize(); x++) {
+					map.GetPlace(x, y).Generate();
+				}
 			}
 		}
 		UpdateCanvasUI();
 	}
 
+	// Wand takeover position
+	private void WandTakeOver(IWand wand) {
+		
+		IPlace place = map.GetPlace(wand.GetPosition());
+        print(place.GetType());
+		if(place.GetOwner() == null) {
+			if(place.TakeOver(wand)) {
+				place.SetOwner(wand);
+			}
+		} else if(place.GetOwner() != wand) {
+			// Attack cause owner
+			if(wand.Attack(place.GetOwner())) {
+				place.SetOwner(wand);
+			}
+		}
+	}
+
 	// Update cavnasUI each tick
 	void UpdateCanvasUI() {
+		wandUI1money.text = wand1.GetMoney().ToString();
+		wandUI1power.text = wand1.GetManPower().ToString();
 
-		wandUI1.transform.Find("MValue").gameObject.GetComponent<Text>().text = wand1.GetMoney().ToString();
-		wandUI1.transform.Find("PValue").gameObject.GetComponent<Text>().text = wand1.GetManPower().ToString();
-
-		wandUI2.transform.Find("MValue").gameObject.GetComponent<Text>().text = wand2.GetMoney().ToString();
-		wandUI2.transform.Find("PValue").gameObject.GetComponent<Text>().text = wand2.GetManPower().ToString();
+		wandUI2money.text = wand2.GetMoney().ToString();
+		wandUI2power.text = wand2.GetManPower().ToString();
 	}
 }
