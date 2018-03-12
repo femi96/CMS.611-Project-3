@@ -52,6 +52,8 @@ public class Game : MonoBehaviour {
 	void Update() {
 		time += Time.deltaTime;
 		if(time > tickTime) GameTick();
+
+		if(Input.GetKeyDown(KeyCode.O)) { Application.LoadLevel(Application.loadedLevel); }
 	}
 
 	// Game tick
