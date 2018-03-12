@@ -15,7 +15,7 @@ public class Wand : MonoBehaviour, IWand {
 	private int mapSize = 10;
 	private float offset;
 
-	public int controls;
+	public int controls; // This would be cleaner as an enum
 	public int xInitial;
 	public int yInitial;
 	private int x;
