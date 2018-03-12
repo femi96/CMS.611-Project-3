@@ -206,9 +206,9 @@ public class Wand : MonoBehaviour, IWand {
 
 	private void MoveWand() {
 		x = Mathf.Max(x, 0);
-		x = Mathf.Min(x, 9);
+		x = Mathf.Min(x, mapSize - 1);
 		y = Mathf.Max(y, 0);
-		y = Mathf.Min(y, 9);
+		y = Mathf.Min(y, mapSize - 1);
 		transform.position = new Vector2(x + offset, y + offset);
 	}
 
