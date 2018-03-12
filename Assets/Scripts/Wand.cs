@@ -147,11 +147,15 @@ public class Wand : MonoBehaviour, IWand {
 	}
 
 	private void MoveWand() {
+		x = Mathf.Max(x, 0);
+		x = Mathf.Min(x, 9);
+		y = Mathf.Max(y, 0);
+		y = Mathf.Min(y, 9);
 		transform.position = new Vector2(x + offset, y + offset);
 	}
 
 	public bool Attack(IWand otherPlayer) {
-		
+
 		if(manPower > otherPlayer.GetManPower()) {
 			LoseManPower(manPower / otherPlayer.GetManPower());
 			otherPlayer.LoseManPower(otherPlayer.GetManPower() / manPower);
