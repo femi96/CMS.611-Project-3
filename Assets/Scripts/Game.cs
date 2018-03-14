@@ -51,7 +51,7 @@ public class Game : MonoBehaviour {
 		ChangeGameState(GameState.Paused);
 
 		time = 0;
-		UpdateCanvasUI();
+		GameTick();
 	}
 	
 	// Update is called once per frame
@@ -80,7 +80,7 @@ public class Game : MonoBehaviour {
 		
 		map.UpdateMap();
 
-		if(tick % 4 == 0 || true) { // This is generation rate (currently every frame because of || true)
+		if(tick % 3 == 0) { // This is generation rate (currently every frame because of || true)
 			for(int y = 0; y < map.GetMapSize(); y++) {
 				for(int x = 0; x < map.GetMapSize(); x++) {
 					map.GetPlace(x, y).Generate();

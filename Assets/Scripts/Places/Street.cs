@@ -9,7 +9,7 @@ public class Street : Place {
 	public Street() {}
 
 	public override bool TakeOver(IWand player) {
-		return false;
+		return true;
 	}
 
 	public override void Generate() {

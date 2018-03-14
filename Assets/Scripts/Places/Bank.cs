@@ -11,8 +11,11 @@ public class Bank : Place {
     }
 
 	public override bool TakeOver(IWand player) {
-        return player.LosePower(3) && player.LoseMoney(20);
-    }
+		if(GetCostM() <= player.GetMoney() && GetCostP() <= player.GetPower()) {
+			return player.LosePower(GetCostP()) && player.LoseMoney(GetCostM());
+		}
+		return false;
+	}
 
 	public override void Generate() {
 		IWand owner = GetOwner();
@@ -21,5 +24,15 @@ public class Bank : Place {
 			owner.AddPower(0);
 		}
 		return;
+	}
+
+	public override void UpdateCosts() {
+		if(IsOwned()) {
+			SetCostM(0);
+			SetCostP(12);
+		} else {
+			SetCostM(20);
+			SetCostP(3);
+		}
 	}
 }
