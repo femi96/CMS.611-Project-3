@@ -11,14 +11,14 @@ public class Bank : Place {
     }
 
 	public override bool TakeOver(IWand player) {
-        return player.LoseManPower(3) && player.LoseMoney(20);
+        return player.LosePower(3) && player.LoseMoney(20);
     }
 
 	public override void Generate() {
 		IWand owner = GetOwner();
 		if (owner != null) {
 			owner.AddMoney(8);
-			owner.AddManPower(0);
+			owner.AddPower(0);
 		}
 		return;
 	}

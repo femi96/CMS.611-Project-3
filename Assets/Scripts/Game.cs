@@ -107,10 +107,10 @@ public class Game : MonoBehaviour {
 	// Update cavnasUI each tick
 	private void UpdateCanvasUI() {
 		wandUI1money.text = wand1.GetMoney().ToString();
-		wandUI1power.text = wand1.GetManPower().ToString();
+		wandUI1power.text = wand1.GetPower().ToString();
 
 		wandUI2money.text = wand2.GetMoney().ToString();
-		wandUI2power.text = wand2.GetManPower().ToString();
+		wandUI2power.text = wand2.GetPower().ToString();
 	}
 
 	private void ChangeGameState(GameState newState) {

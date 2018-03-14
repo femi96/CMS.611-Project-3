@@ -11,14 +11,14 @@ public class PoliceStation : Place {
 	}
 
 	public override bool TakeOver(IWand player) {
-		return player.LoseManPower(2) && player.LoseMoney(15);
+		return player.LosePower(2) && player.LoseMoney(15);
 	}
 
 	public override void Generate() {
 		IWand owner = GetOwner();
 		if (owner != null) {
 			owner.AddMoney(8);
-			owner.AddManPower(2);
+			owner.AddPower(2);
 		}
 		return;
 	}

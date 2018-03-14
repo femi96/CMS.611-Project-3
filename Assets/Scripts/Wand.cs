@@ -9,7 +9,7 @@ public class Wand : MonoBehaviour, IWand {
 
 	// Wand variables
 	public double money;
-	public double manPower;
+	public double power;
 	private Color color;
 
 	private int mapSize = 10;
@@ -34,7 +34,7 @@ public class Wand : MonoBehaviour, IWand {
 		qy = y;
 
 		money = 30;
-		manPower = 2;
+		power = 2;
 		color = transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color;
 		
 		queue = new LinkedList<Direction>();
@@ -112,16 +112,16 @@ public class Wand : MonoBehaviour, IWand {
 		return money;
 	}
 
-	public double GetManPower(){
-		return manPower;
+	public double GetPower(){
+		return power;
 	}
 
 	public void AddMoney(double m){
 		money = money + m;
 	}
 
-	public void AddManPower(double m){
-		manPower = manPower + m;
+	public void AddPower(double m){
+		power = power + m;
 	}
 		
 	// Lose methods return true if possible, return false if not possible
@@ -133,9 +133,9 @@ public class Wand : MonoBehaviour, IWand {
 		return false;
 	}
 
-	public bool LoseManPower(double m){
-		if (manPower >= m) {
-			manPower = manPower - m;
+	public bool LosePower(double m){
+		if (power >= m) {
+			power = power - m;
 			return true;
 		}
 		return false;
@@ -214,14 +214,14 @@ public class Wand : MonoBehaviour, IWand {
 
 	public bool Attack(IWand otherPlayer) {
 
-		if(manPower > otherPlayer.GetManPower()) {
-			LoseManPower(manPower / otherPlayer.GetManPower());
-			otherPlayer.LoseManPower(otherPlayer.GetManPower() / manPower);
+		if(power > otherPlayer.GetPower()) {
+			LosePower(power / otherPlayer.GetPower());
+			otherPlayer.LosePower(otherPlayer.GetPower() / power);
 			return true;
 
-		} else if(manPower < otherPlayer.GetManPower()) {
-			otherPlayer.LoseManPower(manPower / otherPlayer.GetManPower());
-			LoseManPower(otherPlayer.GetManPower() / manPower);
+		} else if(power < otherPlayer.GetPower()) {
+			otherPlayer.LosePower(power / otherPlayer.GetPower());
+			LosePower(otherPlayer.GetPower() / power);
 			return false;
 
 		} else {

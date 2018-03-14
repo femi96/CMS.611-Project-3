@@ -15,7 +15,7 @@ public class PizzaPlace : Place {
 	//		Returns boolean for if takeover was successful
 	//
 	public override bool TakeOver(IWand player) {
-		return player.LoseManPower(1) && player.LoseMoney(10);
+		return player.LosePower(1) && player.LoseMoney(10);
 	}
 
 	// Called on generation ticks.
@@ -30,7 +30,7 @@ public class PizzaPlace : Place {
 		IWand owner = GetOwner();
 		if (owner != null) {
 			owner.AddMoney(4);
-			owner.AddManPower(0);
+			owner.AddPower(0);
 		}
 		return;
 	}

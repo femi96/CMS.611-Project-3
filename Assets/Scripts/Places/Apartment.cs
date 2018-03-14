@@ -11,14 +11,17 @@ public class Apartment : Place {
 	}
 
 	public override bool TakeOver(IWand player) {
-		return player.LoseManPower(GetCostP()) && player.LoseMoney(GetCostM());
+		if(GetCostM() <= player.GetMoney() && GetCostP() <= player.GetPower()) {
+			return true;
+		}
+		return player.LosePower(GetCostP()) && player.LoseMoney(GetCostM());
 	}
 
 	public override void Generate() {
 		IWand owner = GetOwner();
 		if (owner != null) {
 			owner.AddMoney(3);
-			owner.AddManPower((int) Random.Range( 0.0f, 1.5f ) ); // will add 1 man power 1/3 of the time
+			owner.AddPower((int) Random.Range( 0.0f, 1.5f ) ); // will add 1 man power 1/3 of the time
 		}
 		return;
 	}
