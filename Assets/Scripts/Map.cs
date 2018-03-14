@@ -53,6 +53,14 @@ public class Map : MonoBehaviour, IMap {
 		}
 	}
 
+	public void UpdatePlaces() {
+		for(int y = 0; y < mapSize; y++) {
+			for(int x = 0; x < mapSize; x++) {
+				placeGrid[x, y].UpdateCosts();
+			}
+		}
+	}
+
 	public int GetMapSize(){
 		return mapSize;
 	}

@@ -14,7 +14,7 @@ public class Game : MonoBehaviour {
 
 	private IWand wand1;
 	private IWand wand2;
-	private Map map;
+	private IMap map;
 	
 	// UI variables
 	public GameObject wandUI1;
@@ -86,6 +86,9 @@ public class Game : MonoBehaviour {
 				}
 			}
 		}
+
+		map.UpdatePlaces();
+
 		UpdateCanvasUI();
 	}
 
@@ -93,13 +96,8 @@ public class Game : MonoBehaviour {
 	private void WandTakeOver(IWand wand) {
 		
 		IPlace place = map.GetPlace(wand.GetPosition());
-		if(place.GetOwner() == null) {
+		if(place.GetOwner() != wand) {
 			if(place.TakeOver(wand)) {
-				place.SetOwner(wand);
-			}
-		} else if(place.GetOwner() != wand) {
-			// Attack cause owner
-			if(wand.Attack(place.GetOwner())) {
 				place.SetOwner(wand);
 			}
 		}

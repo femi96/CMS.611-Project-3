@@ -11,7 +11,7 @@ public class Apartment : Place {
 	}
 
 	public override bool TakeOver(IWand player) {
-		return player.LoseManPower(2) && player.LoseMoney(15);
+		return player.LoseManPower(GetCostP()) && player.LoseMoney(GetCostM());
 	}
 
 	public override void Generate() {
@@ -21,5 +21,10 @@ public class Apartment : Place {
 			owner.AddManPower((int) Random.Range( 0.0f, 1.5f ) ); // will add 1 man power 1/3 of the time
 		}
 		return;
+	}
+
+	public override void UpdateCosts() {
+		SetCostM(5);
+		SetCostP(0);
 	}
 }
