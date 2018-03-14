@@ -30,7 +30,7 @@ public class Game : MonoBehaviour {
 
 	// Game tick variables
 	private float time;
-	private float tickTime = 1f;
+	private float tickTime = 1f; // This is in seconds
 	private int tick;
 
 
@@ -80,7 +80,7 @@ public class Game : MonoBehaviour {
 		
 		map.UpdateMap();
 
-		if(tick % 4 == 0 || true) {
+		if(tick % 4 == 0 || true) { // This is generation rate (currently every frame because of || true)
 			for(int y = 0; y < map.GetMapSize(); y++) {
 				for(int x = 0; x < map.GetMapSize(); x++) {
 					map.GetPlace(x, y).Generate();
