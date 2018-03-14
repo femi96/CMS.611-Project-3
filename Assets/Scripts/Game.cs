@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour {
 	// Game:
@@ -59,7 +60,7 @@ public class Game : MonoBehaviour {
 		time += Time.deltaTime;
 		if(time > tickTime) GameTick();
 
-		if(Input.GetKeyDown(KeyCode.O)) { Application.LoadLevel(Application.loadedLevel); }
+		if(Input.GetKeyDown(KeyCode.O)) { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
 		if(Input.GetKeyDown(KeyCode.P)) {
 			if(gameState == GameState.Playing) { ChangeGameState(GameState.Paused); } else
 			if(gameState == GameState.Paused) { ChangeGameState(GameState.Playing); }
