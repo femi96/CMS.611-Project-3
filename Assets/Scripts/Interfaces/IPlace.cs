@@ -31,4 +31,6 @@
     void Generate();
     
     void UpdateCosts();
+    int GetCostM();
+    int GetCostP();
 }

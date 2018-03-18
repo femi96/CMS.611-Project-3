@@ -39,6 +39,7 @@ public class Map : MonoBehaviour, IMap {
 				if(x % 3 == 0 || y == 2 || y == 7) { placeGrid[x, y] = new Street(); }
 			}
 		}
+		UpdatePlaces();
 		UpdateMap();
 	}
 	
@@ -104,6 +105,20 @@ public class Map : MonoBehaviour, IMap {
 		int i = Array.IndexOf(typeIndex, place.GetPlaceType());
 		if(i != -1) {
 			go.transform.Find("Type").gameObject.GetComponent<SpriteRenderer>().sprite = typeSprites[i];
+		}
+
+		// Takeover costs
+		Transform takeOver = go.transform.Find("TakeOver");
+		if(place.GetCostP() > 0) {
+			takeOver.Find("Power").gameObject.GetComponent<TextMesh>().text = place.GetCostP().ToString();
+		} else {
+			Destroy(takeOver.Find("Power").gameObject);
+		}
+
+		if(place.GetCostM() > 0) {
+			takeOver.Find("Money").gameObject.GetComponent<TextMesh>().text = place.GetCostM().ToString();
+		} else {
+			Destroy(takeOver.Find("Money").gameObject);
 		}
 
 		placeGOGrid[x, y] = go;

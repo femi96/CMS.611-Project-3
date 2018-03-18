@@ -77,8 +77,6 @@ public class Game : MonoBehaviour {
 		
 		WandTakeOver(wand1);
 		WandTakeOver(wand2);
-		
-		map.UpdateMap();
 
 		if(tick % 3 == 0) { // This is generation rate (currently every frame because of || true)
 			for(int y = 0; y < map.GetMapSize(); y++) {
@@ -89,6 +87,7 @@ public class Game : MonoBehaviour {
 		}
 
 		map.UpdatePlaces();
+		map.UpdateMap();
 
 		UpdateCanvasUI();
 	}
