@@ -149,7 +149,7 @@ public class Wand : MonoBehaviour, IWand {
 	}
 
 	public Direction Pop() {
-		if(queue.Count == 0) {
+		if(queue == null || queue.Count == 0) {
 			return Direction.NONE;
 		}
 		Direction popped = queue.First.Value;
