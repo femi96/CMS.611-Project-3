@@ -24,6 +24,7 @@ public class Game : MonoBehaviour {
 	public GameObject pausedUI;
 	public GameObject wand1WinUI;
 	public GameObject wand2WinUI;
+	public GameObject titleUI;
 
 	private Text wandUI1money;
 	private Text wandUI2money;
@@ -50,7 +51,7 @@ public class Game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		ChangeGameState(GameState.Paused);
+		ChangeGameState(GameState.Title);
 
 		time = 0;
 		GameTick();
@@ -65,7 +66,7 @@ public class Game : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.O)) { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
 		if(Input.GetKeyDown(KeyCode.P)) {
 			if(gameState == GameState.Playing) { ChangeGameState(GameState.Paused); } else
-			if(gameState == GameState.Paused) { ChangeGameState(GameState.Playing); }
+			if(gameState == GameState.Paused || gameState == GameState.Title) { ChangeGameState(GameState.Playing); }
 		}
 	}
 
@@ -134,5 +135,6 @@ public class Game : MonoBehaviour {
 		pausedUI.SetActive(gameState == GameState.Paused);
 		wand1WinUI.SetActive(gameState == GameState.Win1);
 		wand2WinUI.SetActive(gameState == GameState.Win2);
+		titleUI.SetActive(gameState == GameState.Title);
 	}
 }

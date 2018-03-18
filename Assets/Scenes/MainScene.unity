@@ -182,6 +182,11 @@ Prefab:
       propertyPath: wand2WinUI
       value: 
       objectReference: {fileID: 1960590441}
+    - target: {fileID: 114363294417555008, guid: 628372f613f39194cbf22902e6691adb,
+        type: 2}
+      propertyPath: titleUI
+      value: 
+      objectReference: {fileID: 1387458639}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 628372f613f39194cbf22902e6691adb, type: 2}
   m_IsPrefabParent: 0
@@ -312,6 +317,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1387458639 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1017850037697890, guid: 8e15aed4768457349afd17c22af4f4f1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1399147467}
 --- !u!1001 &1399147467
 Prefab:
   m_ObjectHideFlags: 0
@@ -408,6 +418,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589740220067412, guid: 8e15aed4768457349afd17c22af4f4f1,
+        type: 2}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114307967301130022, guid: 8e15aed4768457349afd17c22af4f4f1,
+        type: 2}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e15aed4768457349afd17c22af4f4f1, type: 2}
@@ -509,6 +529,6 @@ GameObject:
   m_PrefabInternal: {fileID: 1399147467}
 --- !u!1 &2065713074 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1017850037697890, guid: 8e15aed4768457349afd17c22af4f4f1,
+  m_PrefabParentObject: {fileID: 1887449249243038, guid: 8e15aed4768457349afd17c22af4f4f1,
     type: 2}
   m_PrefabInternal: {fileID: 1399147467}
