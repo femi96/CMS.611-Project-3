@@ -110,13 +110,13 @@ public class Map : MonoBehaviour, IMap {
 		// Takeover costs
 		Transform takeOver = go.transform.Find("TakeOver");
 		if(place.GetCostP() > 0) {
-			takeOver.Find("Power").gameObject.GetComponent<TextMesh>().text = place.GetCostP().ToString();
+			takeOver.Find("Power").gameObject.GetComponent<TextMesh>().text = "-"+place.GetCostP().ToString();
 		} else {
 			Destroy(takeOver.Find("Power").gameObject);
 		}
 
 		if(place.GetCostM() > 0) {
-			takeOver.Find("Money").gameObject.GetComponent<TextMesh>().text = place.GetCostM().ToString();
+			takeOver.Find("Money").gameObject.GetComponent<TextMesh>().text = "-"+place.GetCostM().ToString();
 		} else {
 			Destroy(takeOver.Find("Money").gameObject);
 		}
