@@ -24,6 +24,7 @@ public class Wand : MonoBehaviour, IWand {
 	private int qy;
 
 	private LinkedList<Direction> queue;
+    private LineRenderer lineRenderer;
 	// Wand variables
 	
 	// Use this for initialization
@@ -36,6 +37,13 @@ public class Wand : MonoBehaviour, IWand {
 		money = 30;
 		power = 2;
 		color = transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color;
+
+        lineRenderer = gameObject.AddComponent<LineRenderer>();
+        lineRenderer.sortingLayerName = "OnTop";
+        lineRenderer.sortingOrder = 500000;
+        lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+        lineRenderer.widthMultiplier = 0.2f;
+
 		
 		queue = new LinkedList<Direction>();
 
@@ -52,21 +60,33 @@ public class Wand : MonoBehaviour, IWand {
 				if(Input.GetKeyDown(KeyCode.W)) {
 					if (CanMove (qx, qy + 1)) {
 						dir = Direction.UP;
-						qy++;
+                        //Debug.DrawLine(new Vector2(qx+offset, qy+offset), new Vector2(qx+offset, qy+1+offset), Color.red, 2, false);
+                        lineRenderer.positionCount++;
+                        lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(qx + offset, qy + 1 + offset, 5000));
+                        qy++;
 					}
 				} else if(Input.GetKeyDown(KeyCode.A)) {
 					if (CanMove (qx - 1, qy)) {
 						dir = Direction.LEFT;
+                        //Debug.DrawLine(new Vector2(qx+offset, qy+offset), new Vector2(qx-1+offset, qy+offset), Color.red, 2, false);
+                        lineRenderer.positionCount++;
+                        lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(qx - 1 + offset, qy + offset, 5000));
 						qx--;
 					}
 				} else if(Input.GetKeyDown(KeyCode.S)) {
 					if (CanMove (qx, qy - 1)) {
 						dir = Direction.DOWN;
+                        //Debug.DrawLine(new Vector2(qx+offset, qy+offset), new Vector2(qx+offset, qy-1+offset), Color.red, 2, false);
+                        lineRenderer.positionCount++;
+                        lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(qx + offset, qy -1+ offset, 5000));
 						qy--;
 					}
 				} else if(Input.GetKeyDown(KeyCode.D)) {
 					if (CanMove (qx + 1, qy)) {
 						dir = Direction.RIGHT;
+                        //Debug.DrawLine(new Vector2(qx+offset, qy+offset), new Vector2(qx+1+offset, qy+offset), Color.red, 2, false);
+                        lineRenderer.positionCount++;
+                        lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(qx + 1 + offset, qy+ offset, 5000));
 						qx++;
 					}
 				}
