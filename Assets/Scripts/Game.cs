@@ -22,6 +22,8 @@ public class Game : MonoBehaviour {
 	public GameObject wandUI2;
 
 	public GameObject pausedUI;
+	public GameObject wand1WinUI;
+	public GameObject wand2WinUI;
 
 	private Text wandUI1money;
 	private Text wandUI2money;
@@ -89,6 +91,15 @@ public class Game : MonoBehaviour {
 		map.UpdateMap();
 
 		UpdateCanvasUI();
+
+		// Temporary win condition
+		if(wand1.GetPower() > 200 && wand1.GetPower() > wand2.GetPower()) {
+			ChangeGameState(GameState.Win1);
+		}
+
+		if(wand2.GetPower() > 200 && wand2.GetPower() > wand1.GetPower()) {
+			ChangeGameState(GameState.Win2);
+		}
 	}
 
 	// Wand takeover position
@@ -121,5 +132,7 @@ public class Game : MonoBehaviour {
 		}
 
 		pausedUI.SetActive(gameState == GameState.Paused);
+		wand1WinUI.SetActive(gameState == GameState.Win1);
+		wand2WinUI.SetActive(gameState == GameState.Win2);
 	}
 }

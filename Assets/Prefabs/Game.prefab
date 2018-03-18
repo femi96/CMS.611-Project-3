@@ -239,6 +239,8 @@ MonoBehaviour:
   wandUI1: {fileID: 0}
   wandUI2: {fileID: 0}
   pausedUI: {fileID: 0}
+  wand1WinUI: {fileID: 0}
+  wand2WinUI: {fileID: 0}
 --- !u!114 &114821677523423312
 MonoBehaviour:
   m_ObjectHideFlags: 1
