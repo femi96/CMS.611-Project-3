@@ -86,7 +86,6 @@ public class Game : MonoBehaviour {
 			}
 		}
 
-		map.UpdatePlaces();
 		map.UpdateMap();
 
 		UpdateCanvasUI();

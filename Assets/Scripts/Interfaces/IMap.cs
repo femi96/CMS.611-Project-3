@@ -22,6 +22,4 @@ public interface IMap {
 	int GetMapSize();
 
 	void UpdateMap();
-	
-	void UpdatePlaces();
 }

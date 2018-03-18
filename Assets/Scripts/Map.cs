@@ -39,7 +39,6 @@ public class Map : MonoBehaviour, IMap {
 				if(x % 3 == 0 || y == 2 || y == 7) { placeGrid[x, y] = new Street(); }
 			}
 		}
-		UpdatePlaces();
 		UpdateMap();
 	}
 	
@@ -47,6 +46,7 @@ public class Map : MonoBehaviour, IMap {
 	void Update() {}
 
 	public void UpdateMap() {
+		UpdatePlaces();
 		for(int y = 0; y < mapSize; y++) {
 			for(int x = 0; x < mapSize; x++) {
 				UpdateGO(x, y);
@@ -54,7 +54,7 @@ public class Map : MonoBehaviour, IMap {
 		}
 	}
 
-	public void UpdatePlaces() {
+	private void UpdatePlaces() {
 		for(int y = 0; y < mapSize; y++) {
 			for(int x = 0; x < mapSize; x++) {
 				placeGrid[x, y].UpdateCosts();
