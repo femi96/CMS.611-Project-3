@@ -194,6 +194,7 @@ public class Wand : MonoBehaviour, IWand {
         {
             newPos[i - 1] = oldPos[i];
         }
+        lineRenderer.positionCount--;
         lineRenderer.SetPositions(newPos);
 		switch(popped) {
 			case Direction.DOWN:
