@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -187,6 +187,24 @@ Prefab:
       propertyPath: titleUI
       value: 
       objectReference: {fileID: 1387458639}
+    - target: {fileID: 114358142662181594, guid: 628372f613f39194cbf22902e6691adb,
+        type: 2}
+      propertyPath: typeSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d6b0d20f219543dd992bc07e0c6e638,
+        type: 3}
+    - target: {fileID: 114358142662181594, guid: 628372f613f39194cbf22902e6691adb,
+        type: 2}
+      propertyPath: typeSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 673a48842d9d54fba981384bb9afd896,
+        type: 3}
+    - target: {fileID: 114358142662181594, guid: 628372f613f39194cbf22902e6691adb,
+        type: 2}
+      propertyPath: typeSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: cb1a8600198c647a597ce862dcc9f906,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 628372f613f39194cbf22902e6691adb, type: 2}
   m_IsPrefabParent: 0
@@ -495,6 +513,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
