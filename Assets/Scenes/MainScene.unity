@@ -538,20 +538,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114394302308813466, guid: 8e15aed4768457349afd17c22af4f4f1,
-        type: 2}
-      propertyPath: m_FontData.m_FontSize
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 114394302308813466, guid: 8e15aed4768457349afd17c22af4f4f1,
-        type: 2}
-      propertyPath: m_Text
-      value: 'By Aashish Welling, Drew Beller, Eghosa Eke,
-
-        Femi Oladipupo, & Giorgi Tskhadadze
-
-        Music: "Mask Off" by Yung Zenpie'
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e15aed4768457349afd17c22af4f4f1, type: 2}
   m_IsPrefabParent: 0
