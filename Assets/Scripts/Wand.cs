@@ -43,8 +43,8 @@ public class Wand : MonoBehaviour, IWand {
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.sortingOrder = 0;
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        lineRenderer.startColor = color;
-        lineRenderer.endColor = color;
+        lineRenderer.startColor = (color*5 + Color.black)/6;
+        lineRenderer.endColor = (color*5 + Color.white)/6;
         lineRenderer.widthMultiplier = 0.1f;
         lineRenderer.positionCount = 0;
         lineRenderer.positionCount++;
