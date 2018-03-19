@@ -34,7 +34,7 @@ public class Wand : MonoBehaviour, IWand {
 		qx = x;
 		qy = y;
 
-		money = 30;
+		money = 20;
 		power = 2;
 		color = transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color;
 
