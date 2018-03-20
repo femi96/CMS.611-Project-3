@@ -40,6 +40,11 @@ public class Game : MonoBehaviour {
 	private float tickTime = 1f; // This is in seconds
 	private int tick;
 
+	// Audio
+	public AudioSource musicBG;
+	public Text musicBGVolume;
+	public Text musicBGMute;
+
 
 	// Use this for finding components
 	void Awake() {
@@ -73,6 +78,20 @@ public class Game : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.P)) {
 			if(gameState == GameState.Playing) { ChangeGameState(GameState.Paused); } else
 			if(gameState == GameState.Paused || gameState == GameState.Title) { ChangeGameState(GameState.Playing); }
+		}
+
+		if(Input.GetKeyDown(KeyCode.G)) {
+			musicBG.volume += 0.005f;
+			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(100*musicBG.volume/0.05f) +"%";
+		}
+		if(Input.GetKeyDown(KeyCode.H)) {
+			musicBG.volume -= 0.005f;
+			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(100*musicBG.volume/0.05f) +"%";
+		}
+		if(Input.GetKeyDown(KeyCode.M)) {
+			musicBG.mute = !musicBG.mute;
+			if(musicBG.mute) musicBGMute.text = "M to Unmute";
+			else musicBGMute.text = "M to Mute";
 		}
 	}
 
@@ -113,7 +132,7 @@ public class Game : MonoBehaviour {
 	private void WandTakeOver(IWand wand) {
 		
 		IPlace place = map.GetPlace(wand.GetPosition());
-		if(place.GetOwner() != wand) {
+		if(place != null && place.GetOwner() != wand) {
 			if(place.TakeOver(wand)) {
 				place.SetOwner(wand);
 			}

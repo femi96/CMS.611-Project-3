@@ -244,6 +244,9 @@ MonoBehaviour:
   wand2WinUI: {fileID: 0}
   titleUI: {fileID: 0}
   scoreUI: {fileID: 0}
+  musicBG: {fileID: 0}
+  musicBGVolume: {fileID: 0}
+  musicBGMute: {fileID: 0}
 --- !u!114 &114821677523423312
 MonoBehaviour:
   m_ObjectHideFlags: 1
