@@ -244,6 +244,8 @@ MonoBehaviour:
   wand2WinUI: {fileID: 0}
   titleUI: {fileID: 0}
   scoreUI: {fileID: 0}
+  score1UI: {fileID: 0}
+  score2UI: {fileID: 0}
   musicBG: {fileID: 0}
   musicBGVolume: {fileID: 0}
   musicBGMute: {fileID: 0}

@@ -34,6 +34,8 @@ public class Game : MonoBehaviour {
 	private Text wandUI2power;
 	
 	public GameObject scoreUI;
+	public Text score1UI;
+	public Text score2UI;
 
 	// Game tick variables
 	private float time;
@@ -119,11 +121,17 @@ public class Game : MonoBehaviour {
 		UpdateCanvasUI();
 
 		// Temporary win condition
-		if(wand1.GetPower() - wand2.GetPower() >= 200) {
+		int score1 = Mathf.RoundToInt((float)(wand1.GetPower() + wand1.GetMoney()/2));
+		int score2 = Mathf.RoundToInt((float)(wand2.GetPower() + wand2.GetMoney()/2));
+
+		score1UI.text = ""+score1;
+		score2UI.text = ""+score2;
+
+		if(score1 - score2 >= 200) {
 			ChangeGameState(GameState.Win1);
 		}
 
-		if(wand2.GetPower() - wand1.GetPower() >= 200) {
+		if(score2 - score1 >= 200) {
 			ChangeGameState(GameState.Win2);
 		}
 	}
@@ -149,10 +157,13 @@ public class Game : MonoBehaviour {
 
 		float canvasHeight = canvas.GetComponent<RectTransform>().rect.height;
 
+		int score1 = Mathf.RoundToInt((float)(wand1.GetPower() + wand1.GetMoney()/2));
+		int score2 = Mathf.RoundToInt((float)(wand2.GetPower() + wand2.GetMoney()/2));
+
 		scoreUI.transform.Find("Score12").GetComponent<RectTransform>()
-			.sizeDelta = new Vector2(20, canvasHeight*(float)(wand2.GetPower() - wand1.GetPower())/200);
+			.sizeDelta = new Vector2(20, canvasHeight*(float)(score2 - score1)/200);
 		scoreUI.transform.Find("Score21").GetComponent<RectTransform>()
-			.sizeDelta = new Vector2(20, canvasHeight*(float)(wand1.GetPower() - wand2.GetPower())/200);
+			.sizeDelta = new Vector2(20, canvasHeight*(float)(score1 - score2)/200);
 	}
 
 	private void ChangeGameState(GameState newState) {
