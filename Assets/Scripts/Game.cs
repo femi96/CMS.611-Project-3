@@ -138,6 +138,7 @@ public class Game : MonoBehaviour {
 			for(int x = 0; x < map.GetMapSize(); x++) {
 				IPlace genPlace = map.GetPlace(x, y);
 				IWand genOwner = genPlace.GetOwner();
+				if(genPlace == null) continue;
 				if(genOwner == wand1) {
 					genMoney1 += genPlace.GetGenM();
 					genPower1 += genPlace.GetGenP();

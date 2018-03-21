@@ -67,12 +67,16 @@ public class Data {
 		return read;
 	}
 	public void WriteLog() {
+		string path = "TestData/";
+
 		string read = ReadLog();
 		string[] splitString = read.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
 
 		System.DateTime now = System.DateTime.Now;
 
-		using (StreamWriter sw = new StreamWriter("TestFile-"+(now.Second*1000+now.Millisecond)+".txt")) {
+		if(!Directory.Exists(path)) Directory.CreateDirectory(path);
+
+		using (StreamWriter sw = new StreamWriter(path+"TestFile-"+(now.Second*1000+now.Millisecond)+".txt")) {
 
 			foreach(string str in splitString) {
 				sw.WriteLine(str);
