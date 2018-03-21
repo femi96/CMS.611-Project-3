@@ -113,6 +113,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &36748947 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114446540400834054, guid: 8e15aed4768457349afd17c22af4f4f1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1399147467}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &153007656 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114638871911207896, guid: 8e15aed4768457349afd17c22af4f4f1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1399147467}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &384778149 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114036390056774168, guid: 8e15aed4768457349afd17c22af4f4f1,
@@ -215,6 +227,26 @@ Prefab:
       objectReference: {fileID: 494817737}
     - target: {fileID: 114363294417555008, guid: 628372f613f39194cbf22902e6691adb,
         type: 2}
+      propertyPath: genM1UI
+      value: 
+      objectReference: {fileID: 36748947}
+    - target: {fileID: 114363294417555008, guid: 628372f613f39194cbf22902e6691adb,
+        type: 2}
+      propertyPath: genM2UI
+      value: 
+      objectReference: {fileID: 2066586783}
+    - target: {fileID: 114363294417555008, guid: 628372f613f39194cbf22902e6691adb,
+        type: 2}
+      propertyPath: genP1UI
+      value: 
+      objectReference: {fileID: 785431165}
+    - target: {fileID: 114363294417555008, guid: 628372f613f39194cbf22902e6691adb,
+        type: 2}
+      propertyPath: genP2UI
+      value: 
+      objectReference: {fileID: 153007656}
+    - target: {fileID: 114363294417555008, guid: 628372f613f39194cbf22902e6691adb,
+        type: 2}
       propertyPath: musicBG
       value: 
       objectReference: {fileID: 1151447950}
@@ -302,6 +334,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &785431165 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114141851443984076, guid: 8e15aed4768457349afd17c22af4f4f1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1399147467}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &950908276
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +733,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1887449249243038, guid: 8e15aed4768457349afd17c22af4f4f1,
     type: 2}
   m_PrefabInternal: {fileID: 1399147467}
+--- !u!114 &2066586783 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114428018393329036, guid: 8e15aed4768457349afd17c22af4f4f1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1399147467}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &2071647736 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114109299041124348, guid: 8e15aed4768457349afd17c22af4f4f1,

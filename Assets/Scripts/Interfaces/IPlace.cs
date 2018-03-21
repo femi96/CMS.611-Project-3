@@ -33,4 +33,6 @@
     void UpdateCosts();
     int GetCostM();
     int GetCostP();
+    int GetGenM();
+    int GetGenP();
 }

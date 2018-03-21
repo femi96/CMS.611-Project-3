@@ -37,6 +37,11 @@ public class Game : MonoBehaviour {
 	public Text score1UI;
 	public Text score2UI;
 
+	public Text genM1UI;
+	public Text genM2UI;
+	public Text genP1UI;
+	public Text genP2UI;
+
 	// Game tick variables
 	private float time;
 	private float tickTime = 1f; // This is in seconds
@@ -120,7 +125,32 @@ public class Game : MonoBehaviour {
 
 		UpdateCanvasUI();
 
-		// Temporary win condition
+		// Generation per tick
+		int genMoney1 = 0;
+		int genMoney2 = 0;
+		int genPower1 = 0;
+		int genPower2 = 0;
+		for(int y = 0; y < map.GetMapSize(); y++) {
+			for(int x = 0; x < map.GetMapSize(); x++) {
+				IPlace genPlace = map.GetPlace(x, y);
+				IWand genOwner = genPlace.GetOwner();
+				if(genOwner == wand1) {
+					genMoney1 += genPlace.GetGenM();
+					genPower1 += genPlace.GetGenP();
+				}
+				if(genOwner == wand2) {
+					genMoney2 += genPlace.GetGenM();
+					genPower2 += genPlace.GetGenP();
+				}
+			}
+		}
+
+		genM1UI.text = "+"+genMoney1;
+		genM2UI.text = "+"+genMoney2;
+		genP1UI.text = "+"+genPower1;
+		genP2UI.text = "+"+genPower2;
+
+		// Win condition
 		int score1 = Mathf.RoundToInt((float)(wand1.GetPower() + wand1.GetMoney()/2));
 		int score2 = Mathf.RoundToInt((float)(wand2.GetPower() + wand2.GetMoney()/2));
 

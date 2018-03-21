@@ -20,8 +20,8 @@ public class PoliceStation : Place {
 	public override void Generate() {
 		IWand owner = GetOwner();
 		if (owner != null) {
-			owner.AddMoney(0);
-			owner.AddPower(4);
+			owner.AddMoney(GetGenM());
+			owner.AddPower(GetGenP());
 		}
 		return;
 	}
@@ -34,5 +34,13 @@ public class PoliceStation : Place {
 			SetCostM(15);
 			SetCostP(2);
 		}
+	}
+
+	public override int GetGenM() {
+		return 0;
+	}
+
+	public override int GetGenP() {
+		return 4;
 	}
 }

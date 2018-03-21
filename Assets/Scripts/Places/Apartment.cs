@@ -20,8 +20,8 @@ public class Apartment : Place {
 	public override void Generate() {
 		IWand owner = GetOwner();
 		if (owner != null) {
-			owner.AddMoney(0);
-			owner.AddPower(1); // will add 1 man power 1/3 of the time
+			owner.AddMoney(GetGenM());
+			owner.AddPower(GetGenP());
 		}
 		return;
 	}
@@ -34,5 +34,13 @@ public class Apartment : Place {
 			SetCostM(5);
 			SetCostP(0);
 		}
+	}
+
+	public override int GetGenM() {
+		return 0;
+	}
+
+	public override int GetGenP() {
+		return 1;
 	}
 }
