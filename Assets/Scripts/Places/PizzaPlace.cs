@@ -32,7 +32,7 @@ public class PizzaPlace : Place {
 			SetCostP(6);
 		} else {
 			SetCostM(0);
-			SetCostP(3);
+			SetCostP(2);
 		}
 	}
 }

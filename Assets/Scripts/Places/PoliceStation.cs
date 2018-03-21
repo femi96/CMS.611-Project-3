@@ -28,11 +28,11 @@ public class PoliceStation : Place {
 
 	public override void UpdateCosts() {
 		if(IsOwned()) {
-			SetCostM(25);
-			SetCostP(3);
+			SetCostM(150);
+			SetCostP(10);
 		} else {
-			SetCostM(15);
-			SetCostP(2);
+			SetCostM(100);
+			SetCostP(5);
 		}
 	}
 }

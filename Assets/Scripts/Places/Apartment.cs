@@ -28,10 +28,10 @@ public class Apartment : Place {
 
 	public override void UpdateCosts() {
 		if(IsOwned()) {
-			SetCostM(10);
-			SetCostP(1);
+			SetCostM(20);
+			SetCostP(10);
 		} else {
-			SetCostM(5);
+			SetCostM(10);
 			SetCostP(0);
 		}
 	}

@@ -28,11 +28,11 @@ public class Bank : Place {
 
 	public override void UpdateCosts() {
 		if(IsOwned()) {
-			SetCostM(0);
-			SetCostP(12);
+			SetCostM(75);
+			SetCostP(10);
 		} else {
-			SetCostM(20);
-			SetCostP(3);
+			SetCostM(50);
+			SetCostP(5);
 		}
 	}
 }

@@ -52,6 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4424542878248948}
   - component: {fileID: 114363294417555008}
+  - component: {fileID: 82036472955492288}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -190,6 +191,86 @@ Transform:
   m_Father: {fileID: 4424542878248948}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82036472955492288
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1343849593640120}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.062
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 256
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114005667327196958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,10 +300,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newPlace: {fileID: 1114881791901774, guid: 30f34f58c8799ca4bb90512a35c57f3f, type: 2}
   typeSprites:
-  - {fileID: 21300000, guid: 0f9c8b752f0011b49a82d2ce86e163e7, type: 3}
-  - {fileID: 21300000, guid: 13d87f7ddd357a04d87e0a6d4251b61d, type: 3}
+  - {fileID: 21300000, guid: cb1a8600198c647a597ce862dcc9f906, type: 3}
+  - {fileID: 21300000, guid: 4d6b0d20f219543dd992bc07e0c6e638, type: 3}
   - {fileID: 21300000, guid: 3bf7d19275048654a8b6efa50fb31bef, type: 3}
-  - {fileID: 21300000, guid: 3e09b31d2de0fef40847702d33b3a99d, type: 3}
+  - {fileID: 21300000, guid: 673a48842d9d54fba981384bb9afd896, type: 3}
   typeIndex: 01000000040000000200000003000000
 --- !u!114 &114363294417555008
 MonoBehaviour:
@@ -236,11 +317,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 0
+  canvas: {fileID: 0}
   wandUI1: {fileID: 0}
   wandUI2: {fileID: 0}
   pausedUI: {fileID: 0}
   wand1WinUI: {fileID: 0}
   wand2WinUI: {fileID: 0}
+  titleUI: {fileID: 0}
+  scoreUI: {fileID: 0}
+  score1UI: {fileID: 0}
+  score2UI: {fileID: 0}
+  musicBG: {fileID: 0}
+  musicBGVolume: {fileID: 0}
+  musicBGMute: {fileID: 0}
+  tickSound: {fileID: 8300000, guid: 3853b15cda60fac4e8efb1e9e133663f, type: 3}
+  copSound: {fileID: 8300000, guid: 03daa44b0d6e73343a02b5bad3c7e27a, type: 3}
+  bankSound: {fileID: 8300000, guid: 2c648efed2aa7ae47abd65d171592e53, type: 3}
 --- !u!114 &114821677523423312
 MonoBehaviour:
   m_ObjectHideFlags: 1

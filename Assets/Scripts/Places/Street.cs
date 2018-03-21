@@ -16,13 +16,13 @@ public class Street : Place {
 	}
 
 	public override void Generate() {
-		return;
-	}
+        return;
+    }
 
 	public override void UpdateCosts() {
 		if(IsOwned()) {
 			SetCostM(0);
-			SetCostP(1);
+			SetCostP(2);
 		} else {
 			SetCostM(0);
 			SetCostP(0);

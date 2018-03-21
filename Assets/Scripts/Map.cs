@@ -55,6 +55,8 @@ public class Map : MonoBehaviour, IMap {
 	}
 
 	private void UpdatePlaces() {
+		if(placeGrid == null) return;
+
 		for(int y = 0; y < mapSize; y++) {
 			for(int x = 0; x < mapSize; x++) {
 				placeGrid[x, y].UpdateCosts();
@@ -67,7 +69,8 @@ public class Map : MonoBehaviour, IMap {
 	}
 
 	public IPlace GetPlace(int x, int y) {
-		if(ValidXY(x,y)) return placeGrid[x, y];
+		if(ValidXY(x,y) && placeGrid != null)
+			return placeGrid[x, y];
 		else return null;
 	}
 
@@ -86,6 +89,8 @@ public class Map : MonoBehaviour, IMap {
 
 	// Update GO at x, y from place data
 	private void UpdateGO(int x, int y) {
+		if(placeGOGrid == null) return;
+
 		GameObject go = placeGOGrid[x, y];
 
 		if(go != null) { Destroy(go); }

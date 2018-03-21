@@ -18,6 +18,8 @@ public class Game : MonoBehaviour {
 	private IMap map;
 	
 	// UI variables
+	public Transform canvas;
+
 	public GameObject wandUI1;
 	public GameObject wandUI2;
 
@@ -30,15 +32,29 @@ public class Game : MonoBehaviour {
 	private Text wandUI2money;
 	private Text wandUI1power;
 	private Text wandUI2power;
+	
+	public GameObject scoreUI;
+	public Text score1UI;
+	public Text score2UI;
 
 	// Game tick variables
 	private float time;
 	private float tickTime = 0.4f;
 	private int tick;
 
+    // Audio
+    [Header("Audio")]
+    public AudioSource musicBG;
+	public Text musicBGVolume;
+	public Text musicBGMute;
+    public AudioClip copSound;
+    public AudioClip bankSound;
 
-	// Use this for finding components
-	void Awake() {
+    private AudioSource source;
+
+
+    // Use this for finding components
+    void Awake() {
 		map = transform.Find("Map").gameObject.GetComponent<Map>();
 		wand1 = transform.Find("Wand1").gameObject.GetComponent<Wand>();
 		wand2 = transform.Find("Wand2").gameObject.GetComponent<Wand>();
@@ -47,7 +63,9 @@ public class Game : MonoBehaviour {
 		wandUI1power = wandUI1.transform.Find("PValue").gameObject.GetComponent<Text>();
 		wandUI2money = wandUI2.transform.Find("MValue").gameObject.GetComponent<Text>();
 		wandUI2power = wandUI2.transform.Find("PValue").gameObject.GetComponent<Text>();
-	}
+        source = GetComponent<AudioSource>();
+
+    }
 
 	// Use this for initialization
 	void Start() {
@@ -68,6 +86,20 @@ public class Game : MonoBehaviour {
 			if(gameState == GameState.Playing) { ChangeGameState(GameState.Paused); } else
 			if(gameState == GameState.Paused || gameState == GameState.Title) { ChangeGameState(GameState.Playing); }
 		}
+
+		if(Input.GetKeyDown(KeyCode.G)) {
+			musicBG.volume += 0.005f;
+			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(100*musicBG.volume/0.05f) +"%";
+		}
+		if(Input.GetKeyDown(KeyCode.H)) {
+			musicBG.volume -= 0.005f;
+			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(100*musicBG.volume/0.05f) +"%";
+		}
+		if(Input.GetKeyDown(KeyCode.M)) {
+			musicBG.mute = !musicBG.mute;
+			if(musicBG.mute) musicBGMute.text = "M to Unmute";
+			else musicBGMute.text = "M to Mute";
+		}
 	}
 
     void MovementTick()
@@ -76,7 +108,7 @@ public class Game : MonoBehaviour {
     }
 	// Game tick
 	private void GameTick() {
-		time -= tickTime;
+        time -= tickTime;
 		tick += 1;
 		
 		wand1.Pop();
@@ -98,11 +130,17 @@ public class Game : MonoBehaviour {
 		UpdateCanvasUI();
 
 		// Temporary win condition
-		if(wand1.GetPower() > 200 && wand1.GetPower() > wand2.GetPower()) {
+		int score1 = Mathf.RoundToInt((float)(wand1.GetPower() + wand1.GetMoney()/2));
+		int score2 = Mathf.RoundToInt((float)(wand2.GetPower() + wand2.GetMoney()/2));
+
+		score1UI.text = ""+score1;
+		score2UI.text = ""+score2;
+
+		if(score1 - score2 >= 200) {
 			ChangeGameState(GameState.Win1);
 		}
 
-		if(wand2.GetPower() > 200 && wand2.GetPower() > wand1.GetPower()) {
+		if(score2 - score1 >= 200) {
 			ChangeGameState(GameState.Win2);
 		}
 	}
@@ -112,20 +150,44 @@ public class Game : MonoBehaviour {
 		
 		IPlace place = map.GetPlace(wand.GetPosition());
 
-		if(place.GetOwner() != wand) {
+		if(place != null && place.GetOwner() != wand) {
 			if(place.TakeOver(wand)) {
 				place.SetOwner(wand);
+                PlayTakeOverSound(place);
+
 			}
 		}
 	}
 
+    private void PlayTakeOverSound(IPlace place)
+    {
+        if(place.GetPlaceType() == PlaceType.Bank)
+        {
+            source.PlayOneShot(bankSound, 0.5f);
+        } else if(place.GetPlaceType() == PlaceType.Police)
+        {
+            source.PlayOneShot(copSound, 0.5f);
+        }
+    }
+
 	// Update cavnasUI each tick
 	private void UpdateCanvasUI() {
 		wandUI1money.text = wand1.GetMoney().ToString();
-		wandUI1power.text = wand1.GetPower().ToString();
+		//wandUI1power.text = wand1.GetPower().ToString();
+        wandUI1power.text = ((int)wand1.GetPower()).ToString();
+        wandUI2money.text = wand2.GetMoney().ToString();
+		//wandUI2power.text = wand2.GetPower().ToString();
+        wandUI2power.text = ((int)wand2.GetPower()).ToString();
 
-		wandUI2money.text = wand2.GetMoney().ToString();
-		wandUI2power.text = wand2.GetPower().ToString();
+        float canvasHeight = canvas.GetComponent<RectTransform>().rect.height;
+
+		int score1 = Mathf.RoundToInt((float)(wand1.GetPower() + wand1.GetMoney()/2));
+		int score2 = Mathf.RoundToInt((float)(wand2.GetPower() + wand2.GetMoney()/2));
+
+		scoreUI.transform.Find("Score12").GetComponent<RectTransform>()
+			.sizeDelta = new Vector2(20, canvasHeight*(float)(score2 - score1)/200);
+		scoreUI.transform.Find("Score21").GetComponent<RectTransform>()
+			.sizeDelta = new Vector2(20, canvasHeight*(float)(score1 - score2)/200);
 	}
 
 	private void ChangeGameState(GameState newState) {
