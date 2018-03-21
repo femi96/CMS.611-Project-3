@@ -22,7 +22,7 @@ public class Street : Place {
 	public override void UpdateCosts() {
 		if(IsOwned()) {
 			SetCostM(0);
-			SetCostP(2);
+			SetCostP(5);
 		} else {
 			SetCostM(0);
 			SetCostP(0);

@@ -20,8 +20,8 @@ public class PizzaPlace : Place {
 	public override void Generate() {
 		IWand owner = GetOwner();
 		if (owner != null) {
-			owner.AddMoney(4);
-			owner.AddPower(0);
+			owner.AddMoney(GetGenM());
+			owner.AddPower(GetGenP());
 		}
 		return;
 	}
@@ -34,5 +34,13 @@ public class PizzaPlace : Place {
 			SetCostM(0);
 			SetCostP(2);
 		}
+	}
+
+	public override int GetGenM() {
+		return 2;
+	}
+
+	public override int GetGenP() {
+		return 0;
 	}
 }

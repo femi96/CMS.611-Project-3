@@ -20,8 +20,8 @@ public class Bank : Place {
 	public override void Generate() {
 		IWand owner = GetOwner();
 		if (owner != null) {
-			owner.AddMoney(8);
-			owner.AddPower(0);
+			owner.AddMoney(GetGenM());
+			owner.AddPower(GetGenP());
 		}
 		return;
 	}
@@ -34,5 +34,13 @@ public class Bank : Place {
 			SetCostM(50);
 			SetCostP(5);
 		}
+	}
+
+	public override int GetGenM() {
+		return 8;
+	}
+
+	public override int GetGenP() {
+		return 0;
 	}
 }

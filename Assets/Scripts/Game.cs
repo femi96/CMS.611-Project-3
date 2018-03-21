@@ -37,6 +37,11 @@ public class Game : MonoBehaviour {
 	public Text score1UI;
 	public Text score2UI;
 
+	public Text genM1UI;
+	public Text genM2UI;
+	public Text genP1UI;
+	public Text genP2UI;
+
 	// Game tick variables
 	private float time;
 	private float tickTime = 0.4f;
@@ -51,6 +56,9 @@ public class Game : MonoBehaviour {
     public AudioClip bankSound;
 
     private AudioSource source;
+	// Analytics
+	private Data gameData;
+
 
 
     // Use this for finding components
@@ -71,6 +79,8 @@ public class Game : MonoBehaviour {
 	void Start() {
 		ChangeGameState(GameState.Title);
 
+		gameData = new Data();
+
 		time = 0;
 		GameTick();
 	}
@@ -89,11 +99,11 @@ public class Game : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.G)) {
 			musicBG.volume += 0.005f;
-			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(100*musicBG.volume/0.05f) +"%";
+			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(50*musicBG.volume/0.05f) +"%";
 		}
 		if(Input.GetKeyDown(KeyCode.H)) {
 			musicBG.volume -= 0.005f;
-			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(100*musicBG.volume/0.05f) +"%";
+			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(50*musicBG.volume/0.05f) +"%";
 		}
 		if(Input.GetKeyDown(KeyCode.M)) {
 			musicBG.mute = !musicBG.mute;
@@ -111,8 +121,7 @@ public class Game : MonoBehaviour {
         time -= tickTime;
 		tick += 1;
 		
-		wand1.Pop();
-		wand2.Pop();
+		gameData.LogInput(wand1.Pop(), wand2.Pop());
 		
 		WandTakeOver(wand1);
 		WandTakeOver(wand2);
@@ -129,7 +138,33 @@ public class Game : MonoBehaviour {
 
 		UpdateCanvasUI();
 
-		// Temporary win condition
+		// Generation per tick
+		int genMoney1 = 0;
+		int genMoney2 = 0;
+		int genPower1 = 0;
+		int genPower2 = 0;
+		for(int y = 0; y < map.GetMapSize(); y++) {
+			for(int x = 0; x < map.GetMapSize(); x++) {
+				IPlace genPlace = map.GetPlace(x, y);
+				IWand genOwner = genPlace.GetOwner();
+				if(genPlace == null) continue;
+				if(genOwner == wand1) {
+					genMoney1 += genPlace.GetGenM();
+					genPower1 += genPlace.GetGenP();
+				}
+				if(genOwner == wand2) {
+					genMoney2 += genPlace.GetGenM();
+					genPower2 += genPlace.GetGenP();
+				}
+			}
+		}
+
+		genM1UI.text = "+"+genMoney1;
+		genM2UI.text = "+"+genMoney2;
+		genP1UI.text = "+"+genPower1;
+		genP2UI.text = "+"+genPower2;
+
+		// Win condition
 		int score1 = Mathf.RoundToInt((float)(wand1.GetPower() + wand1.GetMoney()/2));
 		int score2 = Mathf.RoundToInt((float)(wand2.GetPower() + wand2.GetMoney()/2));
 
@@ -138,10 +173,12 @@ public class Game : MonoBehaviour {
 
 		if(score1 - score2 >= 200) {
 			ChangeGameState(GameState.Win1);
+			gameData.WriteLog();
 		}
 
 		if(score2 - score1 >= 200) {
 			ChangeGameState(GameState.Win2);
+			gameData.WriteLog();
 		}
 	}
 

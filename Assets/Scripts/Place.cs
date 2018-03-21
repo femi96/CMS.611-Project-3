@@ -72,4 +72,12 @@ public abstract class Place : IPlace {
 	public int GetCostP() {
 		return costP;
 	}
+
+	public virtual int GetGenP() {
+		return 0;
+	}
+
+	public virtual int GetGenM() {
+		return 0;
+	}
 }
