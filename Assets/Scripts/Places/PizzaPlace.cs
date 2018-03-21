@@ -29,15 +29,15 @@ public class PizzaPlace : Place {
 	public override void UpdateCosts() {
 		if(IsOwned()) {
 			SetCostM(0);
-			SetCostP(6);
+			SetCostP(12);
 		} else {
 			SetCostM(0);
-			SetCostP(2);
+			SetCostP(3);
 		}
 	}
 
 	public override int GetGenM() {
-		return 2;
+		return 4;
 	}
 
 	public override int GetGenP() {
