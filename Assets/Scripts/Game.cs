@@ -60,6 +60,8 @@ public class Game : MonoBehaviour {
 	private Data gameData;
 
 
+	public GameObject tickerUI;
+
 
     // Use this for finding components
     void Awake() {
@@ -72,7 +74,6 @@ public class Game : MonoBehaviour {
 		wandUI2money = wandUI2.transform.Find("MValue").gameObject.GetComponent<Text>();
 		wandUI2power = wandUI2.transform.Find("PValue").gameObject.GetComponent<Text>();
         source = GetComponent<AudioSource>();
-
     }
 
 	// Use this for initialization
@@ -87,8 +88,8 @@ public class Game : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-
-		time += Time.deltaTime;
+        time += Time.deltaTime;
+        tickerUI.transform.Rotate(new Vector3(0, 0, 360 / 3 * (Time.deltaTime / tickTime)));
 		if(time > tickTime) GameTick();
 
 		if(Input.GetKeyDown(KeyCode.O)) { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
