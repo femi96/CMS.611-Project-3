@@ -84,11 +84,11 @@ public class Game : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.G)) {
 			musicBG.volume += 0.005f;
-			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(100*musicBG.volume/0.05f) +"%";
+			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(50*musicBG.volume/0.05f) +"%";
 		}
 		if(Input.GetKeyDown(KeyCode.H)) {
 			musicBG.volume -= 0.005f;
-			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(100*musicBG.volume/0.05f) +"%";
+			musicBGVolume.text = "Volume: "+ Mathf.RoundToInt(50*musicBG.volume/0.05f) +"%";
 		}
 		if(Input.GetKeyDown(KeyCode.M)) {
 			musicBG.mute = !musicBG.mute;

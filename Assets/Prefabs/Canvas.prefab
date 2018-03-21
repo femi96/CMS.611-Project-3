@@ -1574,7 +1574,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Volume: 100%'
+  m_Text: 'Volume: 50%'
 --- !u!114 &114060358244904916
 MonoBehaviour:
   m_ObjectHideFlags: 1
