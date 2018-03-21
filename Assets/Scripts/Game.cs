@@ -52,6 +52,9 @@ public class Game : MonoBehaviour {
 	public Text musicBGVolume;
 	public Text musicBGMute;
 
+	// Analytics
+	private Data gameData;
+
 
 	// Use this for finding components
 	void Awake() {
@@ -70,6 +73,8 @@ public class Game : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		ChangeGameState(GameState.Title);
+
+		gameData = new Data();
 
 		time = 0;
 		GameTick();
@@ -107,8 +112,7 @@ public class Game : MonoBehaviour {
 		time -= tickTime;
 		tick += 1;
 		
-		wand1.Pop();
-		wand2.Pop();
+		gameData.LogInput(wand1.Pop(), wand2.Pop());
 		
 		WandTakeOver(wand1);
 		WandTakeOver(wand2);
@@ -159,10 +163,12 @@ public class Game : MonoBehaviour {
 
 		if(score1 - score2 >= 200) {
 			ChangeGameState(GameState.Win1);
+			gameData.WriteLog();
 		}
 
 		if(score2 - score1 >= 200) {
 			ChangeGameState(GameState.Win2);
+			gameData.WriteLog();
 		}
 	}
 
