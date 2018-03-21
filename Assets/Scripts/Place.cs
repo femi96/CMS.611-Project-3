@@ -12,6 +12,9 @@ public abstract class Place : IPlace {
 	private IWand owner;	// If owner == null, owner = false
 
 	private PlaceType placeType = PlaceType.Default;
+
+	private int costM;
+	private int costP;
 	
 	public virtual bool TakeOver(IWand player) {
 		return false;
@@ -19,6 +22,11 @@ public abstract class Place : IPlace {
 
 	public virtual void Generate() {
 		return;
+	}
+
+	public virtual void UpdateCosts() {
+		SetCostM(0);
+		SetCostP(0);
 	}
 
 	public bool IsOwned() {
@@ -31,21 +39,37 @@ public abstract class Place : IPlace {
 		return owner;
 	}
 
+	public void SetOwner(IWand newOwner) {
+		owned = true;
+		owner = newOwner;
+	}
+
 	// Maintain owned rep state
 	private void OwnedRep() {
 		if(!owned) { owner = null; }
 	}
 
-	public void SetOwner(IWand newOwner) {
-		owned = true;
-		owner = newOwner;
+	public PlaceType GetPlaceType() {
+		return placeType;
 	}
 
 	public void SetType(PlaceType newType) {
 		placeType = newType;
 	}
 
-	public PlaceType GetPlaceType() {
-		return placeType;
+	public void SetCostM(int newCost) {
+		costM = newCost;
+	}
+
+	public void SetCostP(int newCost) {
+		costP = newCost;
+	}
+
+	public int GetCostM() {
+		return costM;
+	}
+
+	public int GetCostP() {
+		return costP;
 	}
 }

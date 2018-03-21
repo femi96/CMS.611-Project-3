@@ -20,11 +20,11 @@ public interface IWand {
     List<Direction> Trail();
 
 	double GetMoney();
-	double GetManPower();
+	double GetPower();
 	void AddMoney(double m);
-	void AddManPower(double m);
+	void AddPower(double m);
 	bool LoseMoney(double m);
-	bool LoseManPower(double m);
+	bool LosePower(double m);
     bool Attack(IWand otherPlayer);
 	bool CanMove (int x_new, int y_new);
 }

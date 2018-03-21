@@ -11,15 +11,28 @@ public class Apartment : Place {
 	}
 
 	public override bool TakeOver(IWand player) {
-		return player.LoseManPower(2) && player.LoseMoney(15);
+		if(GetCostM() <= player.GetMoney() && GetCostP() <= player.GetPower()) {
+			return player.LosePower(GetCostP()) && player.LoseMoney(GetCostM());
+		}
+		return false;
 	}
 
 	public override void Generate() {
 		IWand owner = GetOwner();
 		if (owner != null) {
-			owner.AddMoney(3);
-			owner.AddManPower((int) Random.Range( 0.0f, 1.5f ) ); // will add 1 man power 1/3 of the time
+			owner.AddMoney(0);
+			owner.AddPower(1); // will add 1 man power 1/3 of the time
 		}
 		return;
+	}
+
+	public override void UpdateCosts() {
+		if(IsOwned()) {
+			SetCostM(10);
+			SetCostP(1);
+		} else {
+			SetCostM(5);
+			SetCostP(0);
+		}
 	}
 }

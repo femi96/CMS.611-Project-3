@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour {
 	// Game:
@@ -14,13 +15,16 @@ public class Game : MonoBehaviour {
 
 	private IWand wand1;
 	private IWand wand2;
-	private Map map;
+	private IMap map;
 	
 	// UI variables
 	public GameObject wandUI1;
 	public GameObject wandUI2;
 
 	public GameObject pausedUI;
+	public GameObject wand1WinUI;
+	public GameObject wand2WinUI;
+	public GameObject titleUI;
 
 	private Text wandUI1money;
 	private Text wandUI2money;
@@ -47,10 +51,10 @@ public class Game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		ChangeGameState(GameState.Paused);
+		ChangeGameState(GameState.Title);
 
 		time = 0;
-		UpdateCanvasUI();
+		GameTick();
 	}
 	
 	// Update is called once per frame
@@ -59,10 +63,10 @@ public class Game : MonoBehaviour {
 		time += Time.deltaTime;
 		if(time > tickTime) GameTick();
 
-		if(Input.GetKeyDown(KeyCode.O)) { Application.LoadLevel(Application.loadedLevel); }
+		if(Input.GetKeyDown(KeyCode.O)) { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
 		if(Input.GetKeyDown(KeyCode.P)) {
 			if(gameState == GameState.Playing) { ChangeGameState(GameState.Paused); } else
-			if(gameState == GameState.Paused) { ChangeGameState(GameState.Playing); }
+			if(gameState == GameState.Paused || gameState == GameState.Title) { ChangeGameState(GameState.Playing); }
 		}
 	}
 
@@ -80,31 +84,36 @@ public class Game : MonoBehaviour {
 		
 		WandTakeOver(wand1);
 		WandTakeOver(wand2);
-		
-		map.UpdateMap();
 
-		if(tick % 4 == 0 || true) {
+		if(tick % 3 == 0) { // This is generation rate (currently every frame because of || true)
 			for(int y = 0; y < map.GetMapSize(); y++) {
 				for(int x = 0; x < map.GetMapSize(); x++) {
 					map.GetPlace(x, y).Generate();
 				}
 			}
 		}
+
+		map.UpdateMap();
+
 		UpdateCanvasUI();
+
+		// Temporary win condition
+		if(wand1.GetPower() > 200 && wand1.GetPower() > wand2.GetPower()) {
+			ChangeGameState(GameState.Win1);
+		}
+
+		if(wand2.GetPower() > 200 && wand2.GetPower() > wand1.GetPower()) {
+			ChangeGameState(GameState.Win2);
+		}
 	}
 
 	// Wand takeover position
 	private void WandTakeOver(IWand wand) {
 		
 		IPlace place = map.GetPlace(wand.GetPosition());
-        print(place.GetType());
-		if(place.GetOwner() == null) {
+
+		if(place.GetOwner() != wand) {
 			if(place.TakeOver(wand)) {
-				place.SetOwner(wand);
-			}
-		} else if(place.GetOwner() != wand) {
-			// Attack cause owner
-			if(wand.Attack(place.GetOwner())) {
 				place.SetOwner(wand);
 			}
 		}
@@ -113,10 +122,10 @@ public class Game : MonoBehaviour {
 	// Update cavnasUI each tick
 	private void UpdateCanvasUI() {
 		wandUI1money.text = wand1.GetMoney().ToString();
-		wandUI1power.text = wand1.GetManPower().ToString();
+		wandUI1power.text = wand1.GetPower().ToString();
 
 		wandUI2money.text = wand2.GetMoney().ToString();
-		wandUI2power.text = wand2.GetManPower().ToString();
+		wandUI2power.text = wand2.GetPower().ToString();
 	}
 
 	private void ChangeGameState(GameState newState) {
@@ -129,5 +138,8 @@ public class Game : MonoBehaviour {
 		}
 
 		pausedUI.SetActive(gameState == GameState.Paused);
+		wand1WinUI.SetActive(gameState == GameState.Win1);
+		wand2WinUI.SetActive(gameState == GameState.Win2);
+		titleUI.SetActive(gameState == GameState.Title);
 	}
 }

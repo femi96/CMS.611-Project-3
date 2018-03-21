@@ -46,9 +46,18 @@ public class Map : MonoBehaviour, IMap {
 	void Update() {}
 
 	public void UpdateMap() {
+		UpdatePlaces();
 		for(int y = 0; y < mapSize; y++) {
 			for(int x = 0; x < mapSize; x++) {
 				UpdateGO(x, y);
+			}
+		}
+	}
+
+	private void UpdatePlaces() {
+		for(int y = 0; y < mapSize; y++) {
+			for(int x = 0; x < mapSize; x++) {
+				placeGrid[x, y].UpdateCosts();
 			}
 		}
 	}
@@ -96,6 +105,20 @@ public class Map : MonoBehaviour, IMap {
 		int i = Array.IndexOf(typeIndex, place.GetPlaceType());
 		if(i != -1) {
 			go.transform.Find("Type").gameObject.GetComponent<SpriteRenderer>().sprite = typeSprites[i];
+		}
+
+		// Takeover costs
+		Transform takeOver = go.transform.Find("TakeOver");
+		if(place.GetCostP() > 0) {
+			takeOver.Find("Power").gameObject.GetComponent<TextMesh>().text = "-"+place.GetCostP().ToString();
+		} else {
+			Destroy(takeOver.Find("Power").gameObject);
+		}
+
+		if(place.GetCostM() > 0) {
+			takeOver.Find("Money").gameObject.GetComponent<TextMesh>().text = "-"+place.GetCostM().ToString();
+		} else {
+			Destroy(takeOver.Find("Money").gameObject);
 		}
 
 		placeGOGrid[x, y] = go;

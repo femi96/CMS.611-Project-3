@@ -29,4 +29,8 @@
 	// Give resources to the place's owner. Call on generation ticks.
 	//		Change resources of place's owner based on the type of place.
     void Generate();
+    
+    void UpdateCosts();
+    int GetCostM();
+    int GetCostP();
 }

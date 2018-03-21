@@ -11,15 +11,28 @@ public class PoliceStation : Place {
 	}
 
 	public override bool TakeOver(IWand player) {
-		return player.LoseManPower(2) && player.LoseMoney(15);
+		if(GetCostM() <= player.GetMoney() && GetCostP() <= player.GetPower()) {
+			return player.LosePower(GetCostP()) && player.LoseMoney(GetCostM());
+		}
+		return false;
 	}
 
 	public override void Generate() {
 		IWand owner = GetOwner();
 		if (owner != null) {
-			owner.AddMoney(8);
-			owner.AddManPower(2);
+			owner.AddMoney(0);
+			owner.AddPower(4);
 		}
 		return;
+	}
+
+	public override void UpdateCosts() {
+		if(IsOwned()) {
+			SetCostM(25);
+			SetCostP(3);
+		} else {
+			SetCostM(15);
+			SetCostP(2);
+		}
 	}
 }

@@ -2,4 +2,4 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { Paused, Playing };
+public enum GameState { Title, Paused, Playing, Win1, Win2 };
