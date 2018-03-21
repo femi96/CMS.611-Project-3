@@ -44,7 +44,7 @@ public class Game : MonoBehaviour {
 
 	// Game tick variables
 	private float time;
-	private float tickTime = 0.4f;
+	private float tickTime = 0.8f;
 	private int tick;
 
     // Audio
